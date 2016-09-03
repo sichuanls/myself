@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表格</title>
+</head>
+<body>
+<style type="text/css">
+*{margin:0;padding: 0}
+body{
+	background-color: #fff;
+}
+tr:nth-of-type(even){
+	background-color: #f3f3f3;
+}
+tr:hover{
+	background-color: yellow;
+}
+</style>
+<table border='1' cellpadding='10' cellspacing="10" rules="all" width='200px' frame="box" >
+	<thead>
+		<th>第一列</th>
+		<th colspan="2">第二列</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td rowspan="2">xxsx</td>
+			<td>a2</td>
+			<td>a3</td>
+		</tr>
+		<tr>
+			<td>b1</td>
+			<td colspan="2">b2</td>
+		</tr>
+	</tbody>
+</table>
+
+<style type="text/css">
+/*	#demo{
+		margin-top:100px;
+		position:relative;
+		width:100px;
+		height:100px;
+		border:2px solid #000;
+		background-color: #fff;
+	}
+.arrow{
+	position: absolute;
+	width:0px;
+	height:0px;
+	line-height: 0px;
+	border-bottom:10px solid transparent;
+	border-left:10px solid #fff;
+	border-top:10px solid transparent;
+	top:10px;
+	left:100px;
+}*/
+#demo {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    position: relative;
+    border: 2px solid #333;
+}
+ 
+#demo:after, #demo:before {
+    border: solid transparent;
+    content: '';
+    height: 0;
+    left: 100%;
+    position: absolute;
+    width: 0;
+}
+#demo:after {
+    border-width: 10px;
+    border-left-color: yellow;
+    top: 20px;
+}
+ #demo:before {
+    border-width: 12px;
+    border-left-color: #000;
+    top: 18px;
+}
+
+ 
+
+</style>
+<div id="demo">
+	<div class="arrow"></div>
+</div>
+<script type="text/javascript" src="newlife.js"></script>
+</body>
+</html>
