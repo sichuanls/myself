@@ -1,0 +1,50 @@
+@技术栈
+node知识
+webAPPP开发 cordova + ionic(angularjs)
+pc开发 C# .net  MVC发布网页  Restful服务   IIS发布  数据库Cache  集成平台Ensemble
+
+@作品集
+实习期间：x.163.com网站  直播(主题活动,专题列表,收藏)、商城(注册登录改进,产品列表)、后台管理 pc/wap
+实验室项目：代码提供展示？ pc-慢病管理、医院数据挖掘  webApp-慢病管理、急救App   
+                           node项目-node+mongoose/mongodb+ pc/webApp  
+                           简单的单元测试-karma、jasmine
+自己的作品：？ 也没有博客文章==  不好证明啊
+http://www.cnblogs.com/jikey/p/4922595.html   ！！！
+
+@关注的网站或博客
+个人博客：阮一峰、张鑫旭、小胡子哥、Tom大叔
+团队博客：淘宝FED、腾讯AlloyTeam Blog、360奇舞团、百度-FEX
+前端网站：掘金、伯乐在线、极客、w3cplus.com
+国外：codepen、stackoverflow、github
+入门：菜鸟教程、w3school、慕课网、MDN web技术文档-https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects
+试题：牛客网、网上资料
+
+@重要技术文档
+各大框架：angularjs、Vue、react、cordova、nodejs、sass/mcss
+库：jquery、bootstrap
+
+@书籍
+javascript高级程序设计、精通css、html高级编程、jQuery权威指南、nodejs高级编程
+
+@实习期间收获和学习
+regularjs+nej+mcss
+完整的开发流程(交互/视觉/前端/服务端/测试  测试服/预发布/上线)
+自我学习(基础)
+
+@一些辅助工具
+sublime及插件(emmet/colorPicker/highlight...)提高开发效率
+	Babel-es6转换  MarkdownPreview  DocBlokr JSHint  JsFormat-JS格式化 Alignment-等号对齐（Ctrl+Alt+A）CSScomb： CSS属性排序
+
+代码版本管理 git svn
+
+@chrome插件或应用 提高开发效率和质量  http://www.open-open.com/news/view/a04812
+ PostMan: API & HTTP 请求调试工具
+ pageRuler:网页标尺,查看控件具体尺寸
+ YSlow:分析网页，并提出如何在一套高性能web页面规则的基础上改进性能
+stackedit:markdown语言在线编辑器  md文件可转化为html文件 
+   HTML 是一种发布的格式，Markdown 是一种书写的格式。Markdown 的格式语法只涵盖纯文本可以涵盖的范围。成为一种适用于网络的书写语言，功能比纯文本更强，因此有很多人用它写博客
+User-Agent Switcher:模拟用户代理(User-Agent)字符串
+
+ Momentum：每天一张大图
+
+

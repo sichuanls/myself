@@ -1,0 +1,147 @@
+CSS
+@background:color url repeat
+  常用在雪碧图，通过背景作为图标 切割其实位置通过background-position来调节  -宽度 -高度
+  			background-repeat重复模式 repeat|repeat-x|repeat-yno-repeat|
+  例：background:url(/i/bg_flower.gif)
+
+
+CSS3
+边框-
+@box-shadow
+@border-radius
+@border-image: url slice type 原理;4刀切(slice 上左下右的裁剪位置)-九宫格 四角不变 水平和垂直可效果(round repeat stretch)
+  例：border-image: url(/i/border_image_button.png) 0 14 0 14 stretch;
+
+背景-
+@background-size    length|percentage|cover|contain;  将背景图片缩小或放大 position的位置是在size的基础上的
+					cover把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。背景图像的某些部分也许无法显示在区域中。
+@background-clip    背景绘制区域，border-box|padding-box|content-box;
+@background-origin   规定背景图片的定位区域。border-box|padding-box|content-box;  默认padding-box
+
+文字效果-
+text-shadow
+word-wrap
+
+字体-  
+   定义自己的字体
+   @font-face{font-family: myFirstFont;src: url('Sansation_Light.ttf'),url('Sansation_Light.eot');font-weight:bold;font-style:normal;font-stretch:normal}
+
+过渡-  
+	元素从一种样式变换为另一种样式时，为元素添加效果  
+	transition:transition-property transition-duration transition-timing-function transition-delay,XXXXX  可多组
+	transition-property：none	没有属性会获得过渡效果。all	所有属性都将获得过渡效果。property属性名称列表，列表以逗号分隔。
+	transition-timing-function: linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(n,n,n,n); 贝塞尔曲线。默认ease
+例子：
+div
+{
+width:100px;
+height:100px;
+background:yellow;
+transition:width 2s, height 2s;
+-moz-transition:width 2s, height 2s, -moz-transform 2s; /* Firefox 4 */
+-webkit-transition:width 2s, height 2s, -webkit-transform 2s; /* Safari and Chrome */
+-o-transition:width 2s, height 2s, -o-transform 2s; /* Opera */
+}
+
+div:hover
+{
+width:200px;
+height:200px;
+transform:rotate(180deg);
+-moz-transform:rotate(180deg); /* Firefox 4 */
+-webkit-transform:rotate(180deg); /* Safari and Chrome */
+-o-transform:rotate(180deg); /* Opera */
+}
+
+动画-
+@keyframes规则创建动画
+	@keyframes animationname {keyframes-selector {css-styles;}}   动画时长的百分比。0 from - 100% to
+而在元素上animation:animation-name animation-duration animation-timing-function animation-delay  
+                    animation-iteration-count  animation-direction  animation-play-state animation-fill-mode
+                    其中 animation-iteration-count: n|infinite;  animation-direction: normal|alternate;是否在下一周期逆向地播放。
+例子：
+@keyframes myfirst
+{
+0%   {background:red; left:0px; top:0px;}
+25%  {background:yellow; left:200px; top:0px;}
+50%  {background:blue; left:200px; top:200px;}
+75%  {background:green; left:0px; top:200px;}
+100% {background:red; left:0px; top:0px;}
+}
+div
+{
+width:100px;
+height:100px;
+background:red;
+position:relative;
+animation:myfirst 5s linear 2s infinite alternate;
+/* Firefox: */
+-moz-animation:myfirst 5s linear 2s infinite alternate;
+/* Safari and Chrome: */
+-webkit-animation:myfirst 5s linear 2s infinite alternate;
+/* Opera: */
+-o-animation:myfirst 5s linear 2s infinite alternate;
+}
+
+2D转换-transform  默认情况，变形的原点在元素的中心点，或者是元素X轴和Y轴的50%处。
+@translate()  例子：transform: translate(50px,100px);   元素从其当前位置移动
+@rotate()           transform:rotate(9deg);     元素顺时针旋转给定的角度。允许负值，元素将逆时针旋转。
+@scale()            transform: scale(2,4);   其他scaleX(n)、scaleY(n)
+@skew()             transform: skew(30deg,20deg);元素翻转给定的角度。围绕 X 轴把元素翻转 30 度，围绕 Y 轴翻转 20 度。
+@matrix()      略
+transform-origin	设置旋转元素的基点位置。默认情况，变形的原点在元素的中心点，或者是元素X轴和Y轴的50%处。
+						transform-origin: x-axis y-axis z-axis;left\center\right\length\%  z轴只有length
+
+3D 转换-transform
+略...
+
+
+（1）目前我们对文档中的某个元素进行移动有两种方式   http://www.tuicool.com/articles/UfYJb2E
+
+1，使用transform提供的translate族函数进行缓动
+
+2，对元素进行绝对定位，在制定时间内改变top/left值
+
+但是，这两种方式有什么区别呢？
+
+长话短说，作者在通过模拟测试，并在chrome上检测了动画的FPS，发现了两者的显著区别：性能。
+
+
+左上方的图片是通过改变元素top/left进行动画的帧率，而右上方则是调用translate函数的帧率。我们可以明显看出左图的每一帧都执行了相对较长时间的paint，在每一帧内，cpu都需要计算该元素的其他样式，特别是相对需要复杂计算的盒阴影，渐变，圆角等样式，最后都需要将这些样式应用到该元素内。从这个角度看，如果对于较为老旧的移动设备进行相对复杂的动画，那么效果肯定不理想。
+
+而通过调用translate，会启动硬件加速，即在GPU层对该元素进行渲染。这样，CPU就会相对解放出来进行其他的计算，GPU对样式的计算相对较快，且保证较大的帧率。我们可以通过2d和3d的transform来启用GPU计算。
+
+总结
+
+最后，总结下对元素进行动画的一些要点：
+
+1，尽量使用keyframes和transform进行动画，这样浏览器会自身分配每帧的长度，并作出优化
+
+2，如果非要使用js来进行动画，使用requestAnimateFrame
+
+3，使用2d transform而不是改变top/left的值，这样会有更短的repaint时间和更圆滑的动画效果
+
+4，移动端的动画效果可能会比pc端的差，因此一定要注意性能优化，尽量减少动画元素的DOM复杂性，待动画结束后异步执行DOM操作
+
+
+（2）浏览器的重绘(repaints)与重排(reflows)  http://www.css88.com/archives/4991
+重绘是一个元素外观的改变所触发的浏览器行为，例如改变vidibility、outline、背景色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。重绘不会带来重新布局，并不一定伴随重排。
+重排是更明显的一种改变，可以理解为渲染树需要重新计算,重排一定会引起浏览器的重绘。常见的触发重排的操作：1. DOM元素的几何属性变化;2.DOM树的结构变化,例如节点的增减、移动等;3.获取某些属性,所以，在多次使用这些值时应进行缓存。
+开发中，比较好的实践是尽量减少重排次数和缩小重排的影响范围：
+1. 将多次改变样式属性的操作合并成一次操作。
+2. 将需要多次重排的元素，position属性设为absolute或fixed，这样此元素就脱离了文档流，它的变化不会影响到其他元素。例如有动画效果的元素就最好设置为绝对定位。
+3. 在内存中多次操作节点，完成后再添加到文档中去。例如要异步获取表格数据，渲染到页面。可以先取得数据后在内存中构建整个表格的html片段，再一次性添加到文档中去，而不是循环添加每一行。
+4. 由于display属性为none的元素不在渲染树中，对隐藏的元素操作不会引发其他元素的重排。如果要对一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示。这样只在隐藏和显示时触发2次重排。
+5. 在需要经常取那些引起浏览器重排的属性值时，要缓存到变量。
+
+
+尽量不要用table布局，table元素一旦触发reflow就会导致table里所有的其它元素reflow。在适合用table的场合，可以设置table-layout为auto或fixed，这样可以让table一行一行的渲染。
+tableLayout 属性用来显示表格单元格、行、列的算法规则。
+固定表格布局：fixed
+固定表格布局与自动表格布局相比，允许浏览器更快地对表格进行布局。
+在固定表格布局中，水平布局仅取决于表格宽度、列宽度、表格边框宽度、单元格间距，而与单元格的内容无关。
+通过使用固定表格布局，用户代理在接收到第一行后就可以显示表格。
+自动表格布局：auto
+在自动表格布局中，列的宽度是由列单元格中没有折行的最宽的内容设定的。
+此算法有时会较慢，这是由于它需要在确定最终的布局之前访问表格中所有的内容。
+

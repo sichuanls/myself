@@ -1,0 +1,29 @@
+方案：SSVM(python+原理...) + 界面采用网站类型进行展示？
+应用：①统计各科室/个人  在右侧常用输入列表作为输入推荐   
+           需要对文书进行统计分析，因为输入法无法获取词条；既有的大量病例；还需非专业词汇的筛选
+           命名实体识别-对比，SSVM相较而言质量更高、原理和使用方法、结果
+           研究现状？
+      ②病人的诊疗时间轴(数据来自结构化医疗数据)
+      ③纠错
+      ④一些辅助功能，右键唤出功能？..
+意义：提高书写效率，解放医生时间，优化文书质量。
+可行性分析：1.可以做  2.如何在医院使用-即怎么嵌入现有电子病历（hygia是C++程序，还是网页版，应该是前者...）
+			   web可能的理由：-如果现在的电子病历系统大都有网页版；-本身自己的知识（可以多写点内容，nodejs+自己的数据mongodb+ensemble临床数据+web安全性+可开发更多功能...)
+可能的问题：怎么嵌入到电子病历或文书系统；是否是word编辑器
+
+更偏向应用，而非SSVM的算法革新
+
+查询关键字：
+named entity recognition in Chinese clinical text
+Structural SVM
+Structural support vector machine
+
+参考文献：
+A comprehensive study of named entity recognition in Chinese clinical text
+Structural SVM with Partial Ranking for Activity Segmentation and Classification
+Data-Driven Information Extraction from Chinese Electronic Medical Records
+Extracting important information from Chinese Operation Notes with natural language processing methods
+
+Structural SVM with Partial Ranking for Activity Segmentation and Classification
+
+中文电子病历命名实体识别研究   哈尔滨工业大学， 计算机科学与技术， 2015， 硕士

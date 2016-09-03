@@ -1,0 +1,47 @@
+@js × √
+数据类型 
+创建对象
+继承
+跨浏览器事件监听√
+事件绑定√
+xhr√ 
+跨域
+bind函数√  bind的返回值是函数[改变了执行环境] var a = func.bind(obj, "bind", "-->"); a();    区别于apply、call
+function tt()
+{
+console.log(arguments); []  arguments.callee==tt→true
+console.log(this); 1  //改变了执行环境
+}
+var i = "1";
+var i1 = tt.bind(i);
+window.i1();
+
+@css
+定位
+垂直居中
+两列/三列布局 
+bootstrap布局和响应式原理 
+
+@综合
+浏览器输入网址发生了什么 http://www.cnblogs.com/wenanry/archive/2010/02/25/1673368.html
+  -DNS域名转换成IP→ 发送请求→ 返回数据→ gzip算法压缩-blob类型传输→ 浏览器解压→ 解加载并显示HTML(部分) → 浏览器获取其他地址内容的标签，获得这些文件 DOM树  渲染  多图片一次性并发几个 等待 
+    &但 不像动态页面那样，静态文件会允许浏览器对其进行缓存。有的文件可能会不需要与服务器通讯，而从缓存中直接读取。服务器的响应中包含了静态文件保存的期限 信息，所以浏览器知道要把它们缓存多长时间。还有，每个响应都可能包含像版本号一样工作的ETag头（被请求变量的实体值），如果浏览器观察到文件的版本 ETag信息已经存在，就马上停止这个文件的传输。
+    &试着猜猜看“fbcdn.net”在地址中代表什么？聪明的答案是"Facebook内容分发网络"。Facebook利用内容分发网络（CDN）分发像图片，CSS表和JavaScript文件这些静态文件。所以，这些文件会在全球很多CDN的数据中心中留下备份。
+    &静态内容往往代表站点的带宽大小，也能通过CDN轻松的复制。通常网站会使用第三方的CDN。例如，Facebook的静态文件由最大的CDN提供商Akamai来托管。举例来讲，当你试着ping static.ak.fbcdn.net的时候，可能会从某个akamai.net服务器上获得响应。有意思的是，当你同样再ping一次的时候，响应的服务器可能就不一样，这说明幕后的负载平衡开始起作用了。
+    &浏览器发送异步（AJAX）请求。HTTP是一个请求-响应协议，所以聊天服务器不能把新消息发给客户。取而代之的是客户端不得不隔几秒就轮询下服务器端看自己有没有新消息。
+    &注：BLOB (binary large object)，二进制大对象，是一个可以存储二进制文件的容器。BLOB常常数据库用来存储二进制文件的字段类型。
+    	 Chunk 分块传输编码（Chunked transfer encoding）是超文本传输协议（HTTP）中的一种数据传输机制，允许HTTP由应用服务器发送给客户端应用（ 通常是网页浏览器）的数据可以分成多个部分
+轮播器
+网络安全 XSS、CSRF
+单例模式/观察者模式
+node简单爬虫 √
+相对大小 px rem
+
+@框架
+框架特点
+angular双向绑定原理及缺点
+业务流程 link与compile
+指令
+vue/react/angular比较
+
+
