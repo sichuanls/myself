@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>跨浏览器事件</title>
+<style>
+pre{color:green;padding:10px 15px;background:#f0f0f0;border:1px dotted #333;font:12px/1.5 Courier New;}
+</style>
+</head>
+<body>
+<pre>
+&lt;script type="text/javascript"&gt;
+//拖动或点击获取/展示/上传文件
+//点击 <input type='file' onchange='changeFile()'> <div id='output'></div>
+function changeFile(event){
+    //获取文件名称 通过value-绝对路径字符串处理 或者file.name
+    var files=EventUtil.getTarget(event).files; //files.length
+    var type='default',reader=new FileReader();
+    var name=files[0].name;//EventUtil.getTarget(event).value;  还有file[0].size
+    if(/image/.test(files[0].type)){
+    	reader.readAsDataURL(files[0]);
+    }
+    else if(/text/.test(files[0].type)){
+    	reader.readAsText(files[0]);
+    }
+    
+    reader.onload=function(){
+    	if(type=='image'){
+    		output.innerHTML="<img src=\" "+reader.result+" \"'>";
+    	}
+    	else if(type=='text'){
+    		output.innerHTML=reader.result;
+    	}
+    };
+    reader.onprogress=function(event){
+    	if(event.lengthComputable){
+    		console.log(loaded,total);
+    	}
+    };
+    reader.onerror=function(){
+    	//错误处理 
+    	output.innerHTML='error';
+    }
+}
+
+//拖动 <div id='dragTarget'></div>
+var dragTarget=document.getElementById('dragTarget');
+var dragHandle=function(event){
+	EventUtil.preventDefault(event);
+	if(event.type=='drag'){
+		var files=event.dataTransfer.files;
+		//可上传文件
+	}
+};
+EventUtil.addHandler(dragTarget,'dragenter',dragHandle);
+EventUtil.addHandler(dragTarget,'dragover',dragHandle);
+EventUtil.addHandler(dragTarget,'drag',dragHandle);
+
+//获取地理位置
+navigator.geolocation.getCurrentPosition(function(position){
+	console.log(position.coords.latitude,position.coords.longtitude);
+},function(err){
+	console.log(err.code,err.message);
+});
+&lt;/script&gt;
+</pre>
+</body>
+</html>

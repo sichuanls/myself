@@ -10,6 +10,7 @@ pc开发 C# .net  MVC发布网页  Restful服务   IIS发布  数据库Cache  �
                            简单的单元测试-karma、jasmine
 自己的作品：？ 也没有博客文章==  不好证明啊
 http://www.cnblogs.com/jikey/p/4922595.html   ！！！
+https://sichuanls.github.io/myself/try/jiayou.html
 
 @关注的网站或博客
 个人博客：阮一峰、张鑫旭、小胡子哥、Tom大叔
