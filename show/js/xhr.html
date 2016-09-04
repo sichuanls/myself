@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>跨浏览器事件</title>
+<style>
+pre{color:green;padding:10px 15px;background:#f0f0f0;border:1px dotted #333;font:12px/1.5 Courier New;}
+</style>
+</head>
+<body>
+<pre>
+&lt;script type="text/javascript"&gt;
+/*ajax xhr XMLHttpRequest*/ 
+var btn=document.getElementById('btn');
+EventUtil.addHandler(btn,'click',upload);
+function upload(){
+	btn.disabled=true;
+	var xhr=new XMLHttpRequest(),url='',data={};
+	//url进行encodeURIComponent化
+	url=encodeURIComponent(url);
+	//data使用FormData()
+	var form=new FormData();
+	for(var item){
+		form.append(item,data[item]);
+	}
+	//onreadystateChange 用很少
+	xhr.onreadystateChange=function(event){
+		if(readystate==4){  //readystate 0-未初始化 1-启动 2-发送 3-接收 4-完成
+			//超时事件发生时，status不能再访问，否则报错
+			try{
+				if( (xhr.staus>=200 && res.staus<300) || res.staus==304){
+					var result=JSON.parse(xhr.responseText);
+					var headers=getAllResponseHeader();
+					console.log(getResponseHeader('Content-Type'));
+				}
+			}
+			catch(ex){
+				//超时处理
+			}
+		}
+	}
+	xhr.onload=function(event){ //完成
+		if( (xhr.staus>=200 && res.staus<300) || res.staus==304){
+			var result=JSON.parse(xhr.responseText);
+			var headers=getAllResponseHeader();
+			console.log(getResponseHeader('Content-Type'));
+		}
+		else{
+			//错误提示
+		}
+		btn.disabled = false;
+		window.onbeforeunload=null;
+	}
+	xhr.onerror=function(){
+		console.log('error');
+		btn.disabled = false;
+		window.onbeforeunload=null;
+	}
+	xhr.onprogress=function(event){ //接收
+		if(event.lengthComputable){
+			console.log(event.position, event.totaiSize);
+		}
+	}
+	window.onbeforeunload = function(){
+	    //正在上传中，刷新或关闭页面将导致操作无效，是否继续?
+	};
+	//其他事件 loadstart abort loadend
+	xhr.open('post',url,true);//初始化 true-异步
+	xhr.timeout=5000;
+	xhr.ontimeout=function(){
+		//超时处理
+	}
+	xhr.send(form); //发送 若无数据必填null
+}
+&lt;/script&gt;
+</pre>
+</body>
+</html>

@@ -6,16 +6,68 @@
 <style>
 body,ul,li{margin:0;padding:0;}
 body{font:14px/1.5 Tahoma;}
-#outer{width:450px;margin:10px auto;}
-#tab{overflow:hidden;zoom:1;background:#000;border:1px solid #000;}
-#tab li{float:left;color:#fff;height:30px;cursor:pointer;line-height:30px;list-style-type:none;padding:0 20px;}
-#tab li.current{color:#000;background:#ccc;}
-#content{border:1px solid #000;border-top-width:0;}
-#content ul{line-height:25px;display:none;margin:0 30px;padding:10px 0;}
-a{text-decoration:none;color:black;}
-a:visited{text-decoration:none;color:black;}
-a:hover{text-decoration:underline;color:blue;}
-a:active{text-decoration:underline;color:orange;}
+#outer{
+  width:450px;
+  margin:10px auto;
+}
+#tab{
+  overflow:hidden;
+  zoom:1;
+  background:#000;
+  border:1px solid #000;
+}
+#tab li{
+  float:left;
+  color:#fff;
+  height:30px;
+  cursor:pointer;
+  line-height:30px;
+  list-style-type:none;
+  padding:0 20px;
+}
+#tab li.current{
+  color:#000;
+  background:#ccc;
+}
+#content{
+  border:1px solid #000;
+  border-top-width:0;
+}
+#content ul{
+  line-height:25px;
+  display:none;
+}
+#content li{
+  list-style-type:none;
+  padding: 5px 10px;
+}
+#content li:before{
+  content:'☆';
+  margin-right:5px;
+  width:12px;
+  height:12px;
+  color:#2196F3;
+  background-color:#fff;
+}
+#content li:hover{
+  background-color:#fff;
+}
+a{
+  text-decoration:none;
+  color:black;
+}
+a:visited{
+  text-decoration:none;
+  color:black;
+}
+a:hover{
+  text-decoration:underline;
+  color:#393;
+}
+a:active{
+  text-decoration:underline;
+  color:orange;
+}
 </style>
 <script>
 window.onload = function ()
@@ -38,54 +90,46 @@ window.onload = function ()
 </script>
 </head>
 <body>
+
 <div id="outer">
     <ul id="tab">
-        <li class="current">应用</li>
-        <li>js</li>
+        <li class="current">js</li>
         <li>css</li>
+        <li >应用</li>
         <li>综合</li>
         <li>其他</li>
     </ul>
     <div id="content">
         <ul style="display:block;">
-            <li><a href="show/application/checkbox.html" target="_blank">复选框（checkbox）全选/全不选/返选</a></li>
-            <li>响应用户操作</li>
-            <li>提示框效果</li>
-            <li>事件驱动</li>
-            <li>元素属性操作</li>
-            <li>动手编写第一个JS特效</li>
-            <li>引入函数</li>
-            <li>网页换肤效果</li>
-            <li>展开/收缩播放列表效果</li>
-        </ul>
-        <ul>
             <li><a href="show/js/event.html" target="_blank">跨浏览器事件绑定</a></li>
-            <li>高重用性函数的编写</li>
-            <li>126邮箱全选效果</li>
-            <li>循环及遍历操作</li>
-            <li>调试器的简单使用</li>
-            <li>典型循环的构成</li>
-            <li>for循环配合if判断</li>
-            <li>className的使用</li>
-            <li>innerHTML的使用</li>
-            <li>戛纳印象效果</li>
-            <li>数组</li>
-            <li>字符串连接</li>
+            <li><a href="show/js/xhr.html" taget="_blank">xhr提交表单</a></li>
+            <li><a href="show/js/dragFile.html" target="_blank">input文件+drag</a></li>
         </ul>
         <ul>
             <li><a href="show/css/reset.html" target="_blank">css reset（淘宝）</a></li>
-            <li>JavaScript出现的位置、优缺点</li>
-            <li>变量、类型、typeof、数据类型转换、变量作用域</li>
-            <li>闭包：什么是闭包、简单应用、闭包缺点</li>
-            <li>运算符：算术、赋值、关系、逻辑、其他运算符</li>
-            <li>程序流程控制：判断、循环、跳出</li>
-            <li>命名规范：命名规范及必要性、匈牙利命名法</li>
-            <li>函数详解：函数构成、调用、事件、传参数、可变参、返回值</li>
-            <li>定时器的使用：setInterval、setTimeout</li>
-            <li>定时器应用：站长站导航效果</li>
-            <li>定时器应用：自动播放的选项卡</li>
-            <li>定时器应用：数码时钟</li>
-            <li>程序调试方法</li>
+            <li><a href="show/css/layout.html" target="_blank">布局（两/三列+bootsrap原理）</a></li>
+            <li><a href="show/css/flex.html" target="_blank">flex</a></li>
+            <li><a href="show/css/text3D.html" target="_blank">3D文字板</a></li>
+            <li><a href="show/css/simpleCarousel.html" target="_blank">简单轮播图</a></li>
+            <li><a href="show/css/simpleMask.html" target="_blank">简单遮罩</a></li>
+        </ul>
+        <ul>
+            <li><a href="show/application/checkbox.html" target="_blank">复选框（全选/全不选/返选）</a></li>
+            <li><a href="show/application/clock.html" target="_blank">canvas 时钟</a></li>
+            <li><a href="show/application/alert.html" target="_blank">可拖动弹框</a></li>
+            <li><a href="show/application/pictureEnlarge/index.html" target="_blank">图片放大</a></li>
+            <li><a href="show/application/dragVerification.html" target="_blank">拖动滑块验证</a></li>
+            <li><a href="show/application/loadingPicTurn/index.html" target="_blank">带loading图片切换</a></li>
+            <li><a href="show/application/iPhone/index.html" target="_blank">仿iPhone界面</a></li>
+        </ul>
+        <ul>
+            <li><a href="show/comprehensive/angular.html" target="_blank">angular原理</a></li>
+            <li><a href="show/comprehensive/reset.html" target="_blank">各框架比较</a></li>
+            <li><a href="show/comprehensive/reset.html" target="_blank">性能优化</a></li>
+            <li><a href="show/comprehensive/reset.html" target="_blank">Web安全</a></li>
+        </ul>
+        <ul>
+            <li><a href="show/others/simpleWebCrawler.html" target="_blank">node简单爬虫</a></li>
         </ul>
     </div>
 </div>

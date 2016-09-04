@@ -2,62 +2,85 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>事件练习：封装兼容性添加、删除事件的函数</title>
+<title>跨浏览器事件</title>
 <style>
 pre{color:green;padding:10px 15px;background:#f0f0f0;border:1px dotted #333;font:12px/1.5 Courier New;}
-span{color:#999;}
 </style>
-<script type="text/javascript">
-var EventUtil = {
-	addHandler: function (oElement, sEvent, fnHandler) {
-		oElement.addEventListener ? oElement.addEventListener(sEvent, fnHandler, false) : oElement.attachEvent("on" + sEvent, fnHandler)	
-	},
-	removeHandler: function (oElement, sEvent, fnHandler) {
-		oElement.removeEventListener ? oElement.removeEventListener(sEvent, fnHandler, false) : oElement.detachEvent("on" + sEvent, fnHandler)
-	},
-	addLoadHandler: function (fnHandler) {
-		this.addHandler(window, "load", fnHandler)
-	}
-};
-EventUtil.addLoadHandler(function () {
-	var aBtn = document.getElementsByTagName("input");
-	
-	//为第一个按钮添加绑定事件
-	EventUtil.addHandler(aBtn[1], "click", function () {
-		EventUtil.addHandler(aBtn[0], "click", fnHandler);	
-		aBtn[0].value = "我可以点击了"
-	});
-	
-	//解除第一个按钮的绑定事件
-	EventUtil.addHandler(aBtn[2], "click", function () {
-		EventUtil.removeHandler(aBtn[0], "click", fnHandler);
-		aBtn[0].value = "毫无用处的按钮"	
-	});
-	
-	//事件处理函数
-	function fnHandler ()
-	{
-		alert("事件绑定成功！")	
-	}	
-})
-</script>
 </head>
 <body>
 <pre>
 &lt;script type="text/javascript"&gt;
-var EventUtil = {
-	addHandler: function (oElement, sEvent, fnHandler) {
-		oElement.addEventListener ? oElement.addEventListener(sEvent, fnHandler, false) : oElement.attachEvent("on" + sEvent, fnHandler)	
+/*跨浏览器事件监听*/ 
+//事件类型 click dbclick change select focus contextmenu keydown keypress keyup(捕获到的字符有区别)
+var EventUtil={
+	addHandler : function(node, type, handler){ //注册事件，添加侦听器 
+		if(node.addEventListener){
+			node.addEventListener(type,handler,false); //false-冒泡时触发 DOM2
+		}
+		else if(node.attachEvent){
+			node.attachEvent('on'+type, handler); //默认冒泡时触发  IE
+		}
+		else{
+			node['on'+type]=handler;  //DOM0
+		}
 	},
-	removeHandler: function (oElement, sEvent, fnHandler) {
-		oElement.removeEventListener ? oElement.removeEventListener(sEvent, fnHandler, false) : oElement.detachEvent("on" + sEvent, fnHandler)
+	removeHandler : function(node, type, handler){ //移除事件
+		if(node.removeEventListener){
+			node.removeEventListener(type,handler,false); 
+		}
+		else if(node.detachEvent){
+			node.detachEvent('on'+type, handler); 
+		}
+		else{
+			node['on'+type]=null;
+		}
 	},
-	addLoadHandler: function (fnHandler) {
-		this.addHandler(window, "load", fnHandler)
+	getEvent:function(event){ //获取事件对象
+		return event?event:window.event;
+	},
+	getTarget:function(event){
+		return event.target?event.target:event.srcElement;
+	},
+	preventDefault:function(event){ //阻止默认事件
+		if(event.preventDefault){
+			event.preventDefault();
+		}
+		else{
+			event.returnValue=-1;
+		}
+	},
+	stopPropagation:function(event){ //中止继续冒泡
+		if(event.stopPropagation){
+			event.stopPropagation();
+		}
+		else{
+			event.cancelBubble=-1;
+		}
+		
 	}
 }
+//调用
+var node=document.getElementById('node');
+var handler=function(e){
+	var event = EventUtil.getEvent(e);
+	var target = EventUtil.getTarget(event);
+	//还可以获取更多数据 
+	//event.type-事件类型 event.currentTarget-注册事件的元素  this总是等于currentTarget
+	//event.eventPhase[1-捕获阶段 2-处于目标 3-冒泡]   event.button[1-左键 2-右键 3-左右都按下 4-中间键]
+	//event.offsetX/offsetY  event.clientX/clientY  event.pageX/pageY  event.screenX/screenY
+	EventUtil.preventDefault(event);
+	EventUtil.stopPropagation(event);
+	EventUtil.removeHandler(node,'click',handler)
+};
+EventUtil.addHandler(node,'click', handler);
+
+//事件委托 多用于table和ul
+eventUtil.addHandler(ul,'click', function(event){
+	//event.target.id  event.target.dataset['shuju'] event.target.dataset.shuju 来判断
+	//或者 event.target元素本身及其子元素操作
+	event.target.style.backgroundColor='red';
+});
 &lt;/script&gt;
 </pre>
-<center><input type="button" value="毫无用处的按钮"> <input type="button" value="绑定click"> <input type="button" value="解除绑定"></center>
 </body>
 </html>

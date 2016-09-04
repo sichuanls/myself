@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>css3-media-queries-demo</title>
+<style>
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    padding: 0;
+    margin: 0;
+}
+.content{
+    zoom:1;
+}
+.content:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; 
+}
+.leftBox, .rightBox{
+    float: left;
+    width: 20%;
+    height: 500px;
+    margin: 5px;
+    background: #ffccf7;
+    display: inline;
+    -webkit-transition: width 1s ease;
+    -moz-transition: width 1s ease;
+    -o-transition: width 1s ease;
+    -ms-transition: width 2s ease;
+    transition: width 1s ease;
+}
+.middleBox{
+    float: left;
+    width: 50%;
+    height: 800px;
+    margin: 5px;
+    background: #b1fffc;
+    display: inline;
+    -webkit-transition: width 1s ease;
+    -moz-transition: width 1s ease;
+    -o-transition: width 1s ease;
+    -ms-transition: width 1s ease;
+    transition: width 1s ease;
+}
+.rightBox{
+    background: #fffab1;
+}
+@media only screen and (min-width: 1024px){
+    .content{
+            width: 1000px;
+            margin: auto
+        }
+}
+@media only screen and (min-width: 400px) and (max-width: 1024px){
+    .rightBox{
+        width: 0;
+    }
+    .leftBox{ width: 30%}
+    .middleBox{ width: 65%}
+}
+@media only screen and (max-width: 400px){
+    .leftBox, .rightBox, .middleBox{ 
+        width: 98%;
+        height: 200px;
+    }
+}
+</style>
+</head>
+
+<body>
+<!-- Media Queries 媒体查询，用于响应式web设计，添加表达式确定媒体变化，在不改变内容的情况下应用不同的样式，以适应不同的设备
+<link rel="stylesheet" media="mediatype and|not|only (media feature)" href="mystylesheet.css">
+@media mediatype and|not|only (media feature) {
+    CSS-Code;
+}
+-->
+<!-- 
+使用方法
+① <link rel="stylesheet" type="text/css" href="" media="screen and (min-width:600px)">  屏幕宽度大于600px应用该样式文件
+② <style type="text/css"> @media screen and (min-width:400px) and (max-width:600px)</style>
+ 注：screen是媒体类型的一种，其他还有 all、screen、speech、print等..
+ and是关键字，其他还有not、only  比如@media not print（非打印设备）
+ min-width、max-width是媒体功能中的一种，其他还有max-height、min-device-width、width、resolution分辨率等
+ -->
+ <link rel="stylesheet" type="text/css" href="">
+ <script type="text/javascript"></script>
+<div class="content">
+  <div class="leftBox"></div>
+  <div class="middleBox"></div>
+  <div class="rightBox"></div>
+</div>
+</body>
+</html>
