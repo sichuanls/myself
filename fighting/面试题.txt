@@ -1,0 +1,387 @@
+@js里bind函数的理解
+先写一段测试用例：
+
+function tt()
+{
+alert(arguments.callee == tt);
+alert(this);
+}
+var i = "1";
+var i1 = tt.bind(i);
+window.i1();
+
+根据输出，我的理解是：函数经过bind后，会生成一个本地函数i1，i1里会有一个对函数tt的引用，并非函数tt的一个副本，所以第一个alert会输出true；
+
+而函数一旦经过bind，即便指定了调用者，那么this仍然是bind指定的this，也就是"1"。
+
+
+@离线应用
+是否在线 navigator.onLine  事件window-online/offline
+应用缓存 .manifest文件 text/cache-manifest applicationCache对象 .statue表明缓存当前状态 相应事件  .swapCache()启动新缓存
+
+@客户端数据存储
+localstorage
+cookie
+userData IE
+
+@ JS中将字符串中每个单词的首字母大写化
+//for循环  
+function titleCase(s) {  
+    var i, ss = s.toLowerCase().split(/\s+/);  
+    for (i = 0; i < ss.length; i++) {  
+        ss[i] = ss[i].slice(0, 1).toUpperCase() + ss[i].slice(1);  
+    }  
+    return ss.join(' ');  
+}  
+
+或者
+//正则+replace  
+function titleCase2(s) {  
+    return s.toLowerCase().replace(/\b([\w|']+)\b/g, function(word) {  
+        //return word.slice(0, 1).toUpperCase() + word.slice(1);  
+        return word.replace(word.charAt(0), word.charAt(0).toUpperCase());  
+    });  
+} 
+//\b是正则表达式规定的一个特殊代码，代表着单词的开头或结尾，也就是单词的分界处。虽然通常英文的单词是由空格，标点符号或者换行来分隔的，但是\b并不匹配这些单词分隔字符中的任何一个，它只匹配一个位置”
+w表示字符类（包括大小写字母，数字,下划线）
+
+
+@如何计算时针与分针夹角的度数
+X时Y分时,θ=|6Y-(30X+0.5Y)|=|5.5Y-30X|,单位是度（°）；
+
+@js实现输入一段英文然后输出出现次数最多的单词
+var yugi = function(str){
+    var array = str.match(/[a-z]+/gi);
+    var obj = {};
+    for(var i = 0; i < array.length; i++){
+        var key = array[i];
+        !obj[key] ? obj[key] = 1 : obj[key]++;
+    }
+    var max = Number.MIN_VALUE, key;
+    for(var k in obj){
+        var val = obj[k];
+        if(val > max){
+            max = val;
+            key = k;
+        }
+    }
+    return key;
+}
+ 
+var key = yugi("I am here at the crossroad.I got my life as heading I dont know.Should I stay or should I go");
+ 
+console.log(key);
+
+
+@字体大小
+px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。
+em是相对长度单位。em的值并不是固定的；em会继承父级元素的字体大小。
+rem相对HTML根元素
+
+@弹性布局
+flex
+
+@响应式
+media-query
+
+@重构
+规范、趋势、移动端？
+
+@优雅降级和渐进增强
+sublime autoPrefixer 默认渐进增强
+
+@闭包
+闭包跟作用域：前作用域总是能够访问外部作用域中的变量。 
+使用场景：
+1.使用闭包可以在JavaScript中模拟块级作用域；
+2.闭包可以用于在对象中创建私有变量。
+
+@标签区别  语义化  和单纯样式标签
+tite与h1的区别
+b与strong的区别   盲人阅读
+i与em的区别 斜体
+
+样式、SEO
+
+@CSS选择器问题
+
+@web前端优化
+
+@优化某页面的加载速度
+1.JS、CSS、HTML做gzip压缩（不要对图片进行Gzip压缩）
+
+2.删除js、css、html文件的注释，回车符，以及无效字节
+
+3.javascript放置网页底部，避免阻塞下载
+
+4.CSS放到header中，避免白屏
+
+5.合并JS和CSS；压缩JS和CSS；
+
+6.优化缓存：对没有变化的css、js，图片等网页元素，直接利用客户端的浏览器缓存读取来有效减少http请求数。
+
+6.通过增加expires header（给文件加上关于过期时间的header报文）可以告诉浏览器，那些网页元素可以缓存和缓存多长时间。
+
+7.采用CSS sprites（CSS Sprites其实就是把网页中一些背景图片整合到一张图片文件中）技术来实现。
+
+8.把脚本和图片放在不同的服务器和域名，做成并行下载。
+
+9.利用H5的缓存技术、
+
+1) 静态资源使用cdn加速
+ 2) 使用CSS精灵技术：所有Tenerife图片都是一张大图片，使用CSS控制坐标
+ 3) 合并并且压缩js/css
+ 4) 页面懒加载（类似于音悦台，淘宝）
+ 5) 使用giz压缩文本和图片
+ 7) 使用 Progressive JPEGs:在装入图像时，开始只显示一个模糊的图像，随着数据的装入，图像逐步变得清晰.
+
+@请设计一套方案，用于确保页面中js加载完全。
+<!doctype html>
+    //加载完成后执行回调
+    function loadScript(url, callback){
+        var script = document.createElement("script")
+        script.type = "text/javascript";
+        if (script.readyState){ //IE
+            script.onreadystatechange = function(){
+                if (script.readyState == "loaded" || script.readyState == "complete"){
+                    script.onreadystatechange = null;
+                    callback();
+                }
+            };
+        } else { //Others: Firefox, Safari, Chrome, and Opera
+            script.onload = function(){
+                callback();
+            };
+        }
+        script.src = url;
+        document.body.appendChild(script);
+    }
+
+    loadScript('')
+
+@对 string 对象进行扩展，使其具有删除前后空格的方法。
+String.prototype.trim=function(){
+    return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+或者
+String.prototype.deletSpace = function(){  
+    var str = this;  //提取需要操作的字符串  
+    while(str[0] == " "){  //删除前面的空格  
+        str = str.substring(1);   
+    }  
+    while(str[str.length - 1] == " "){  //删除后面的空格  
+        str = str.substring(0,str.length-1);  
+    }  
+    return str;  
+}
+
+@验证用户是否输入正确的身份证号码
+var string='35021119920102353X';
+var stringExp=new RegExp(/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/);
+alert(stringExp.test(string)); //true
+
+@CSS优先级算法
+内联1000 id100 类10 元素1 
+1.选择器都有一个权值，权值越大越优先；
+
+2.当权值相等时，后出现的样式表设置要优于先出现的样式表设置；
+
+3.创作者的规则高于浏览者：即网页编写者设置的CSS 样式的优先权高于浏览器所设置的样式；
+
+4.继承的CSS 样式不如后来指定的CSS 样式；
+
+5.在同一组属性设置中标有“!important”规则的优先级最大；
+
+@品 字布局 如何设计？
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>alert标签名</title>
+    <style>*{margin:0;padding:0}
+    .top{position: absolute;top:0;bottom: 50%;background:red;width: 100%;}
+    .con{position: absolute;top:50%;bottom: 0;width: 100%;}
+    .left{position: absolute;left:0;top:0;height: 100%;width: 50%;background: #000}
+    .right{position: absolute;right:0;top:0;height: 100%;width: 50%;background: yellow}
+    </style>
+
+</head>
+<body>
+    <div class="top"></div>
+    <div class="con">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>
+
+
+@请给出异步加载js方案，不少于两种。
+默认情况javascript是同步加载的，也就是javascript的加载时阻塞的，后面的元素要等待javascript加载完毕后才能进行再加载，对于一些意义不是很大的javascript，如果放在页头会导致加载很慢的话，是会严重影响用户体验的。
+
+1.defer（只支持IE）
+
+<script type="text/javascript" defer="defer">
+alert('taojiaqu');
+</script> 
+2.async规定一旦脚本可用，则会异步执行，只适用于外部脚本
+
+<script type="text/javascript" src="taojiaqu.js" async="async"></script> 
+ 
+3.创建script，插入到DOM中，加载完毕后callBack
+
+
+@jquery绑定事件的方法，不少于两种。
+.bind()是直接绑定在元素上
+
+.live()则是通过冒泡的方式来绑定到元素上的。更适合列表类型的，绑定到document DOM节点上。和.bind()的优势是支持动态数据。(live由于性能原因已经被废弃)
+
+.delegate()则是更精确的小范围使用事件代理，性能优于.live()
+
+.on()则是最新的1.9版本整合了之前的三种方式的新事件绑定机制
+
+@新的 HTML5 文档类型和字符集是？
+<!doctype html>
+<meta charset="UTF-8">
+
+@媒体标签
+<audio controls="controls">
+    <source src=”jamshed.mp3″ type=”audio/mpeg”>
+    <source src=”jamshed.ogg″ type=”audio/ogg”>
+    Your browser does’nt support audio embedding feature.
+</audio>
+
+<video width="320" height="240" controls="controls">
+    <source src="movie.ogg" type="video/ogg">
+    <source src="movie.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<embed> 标签定义嵌入的内容，比如插件。
+<embed src="helloworld.swf" />
+
+<track> 播放带有字幕的视频：
+<video width="320" height="240" controls="controls">
+    <source src="forrest_gump.mp4" type="video/mp4" />
+    <source src="forrest_gump.ogg" type="video/ogg" />
+    <track kind="subtitles" src="subs_chi.srt" srclang="zh" label="Chinese">
+    <track kind="subtitles" src="subs_eng.srt" srclang="en" label="English">
+</video>
+
+@HTML5 canvas 用于在网页上绘制图形，该元素标签强大之处在于可以直接在 HTML5 上进行图形操作
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas=document.getElementById('canvas');
+        var ctx=canvas.getContext('2d');
+        ctx.fillStyle='#FF0000';
+        ctx.fillRect(0,0,200,200);
+    </script>
+</body>
+</html>
+
+@HTML5 能够本地存储数据，在之前都是使用 cookies 使用的。HTML5 提供了下面两种本地存储方案：
+
+localStorage - 没有时间限制的数据存储，数据永远不会过期，关闭浏览器也不会丢失
+sessionStorage - 针对一个 session 的数据存储，同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。
+
+@HTML5 应用程序缓存
+应用程序缓存为应用带来三个优势：
+
+　　离线浏览 - 用户可在应用离线时使用它们
+
+　　速度 - 已缓存资源加载得更快
+
+　　减少服务器负载 - 浏览器将只从服务器下载更新过或更改过的资源。
+
+实现借助于 manifest 文件
+
+<html manifest="demo.appcache">
+
+@doctype 作用？严格模式与混合模式如何区分？它们有何意义？
+<!DOCTYPE> 声明可告知浏览器文档使用哪种 HTML 或 XHTML 规范。
+在标准模式中，浏览器根据规范呈现页面；在混杂模式中，页面以一种比较宽松的向后兼容的方式显示
+<!-- HTML4.01文档严格定义类型，此类型定义的文档可以使用HTML中的标签与元素，不能包含不被W3C推荐的标签，不可以使用框架 -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- HTML4.01文档过渡定义类型，此类型定义的文档可以使用HTML中的标签与元素包括一些不被W3C推荐的标签，不可以使用框架 -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- HTML4.01文档框架定义类型，此类型等同于HTML4.01文档过渡定义类型，但可以使用框架 -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+
+document.compatMode=="CSS1Compat"  Standards Mode
+document.compatMode=="BackCompat"  
+
+
+@反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个服务器。
+反向代理的作用
+①保护网站安全：任何来自Internet的请求都必须先经过代理服务器；
+②通过配置缓存功能加速Web请求：可以缓存真实Web服务器上的某些静态资源，减轻真实Web服务器的负载压力；
+③实现负载均衡：充当负载均衡服务器均衡地分发请求，平衡集群中各个服务器的负载压力；
+
+http://www.open-open.com/lib/view/open1417488526633.html
+Nginx是一款轻量级的网页服务器、反向代理器以及电子邮件代理服务器。
+说到Web服务器，Apache服务器和IIS服务器是两大巨头；
+Nginx的核心特点
+（1）跨平台：Nginx 可以在大多数 Unix OS编译运行，而且也有Windows的移植版本；
+（2）配置异常简单：非常容易上手。配置风格跟程序开发一样，神一般的配置；
+（3）非阻塞、高并发连接：数据复制时，磁盘I/O的第一阶段是非阻塞的。官方测试能够支撑5万并发连接，在实际生产环境中跑到2～3万并发连接数。（这得益于Nginx使用了最新的epoll模型）；
+
+@堆和栈的区别
+http://www.cnblogs.com/lln7777/archive/2012/03/14/2396164.html
+内存方面
+数据结构
+
+@判断一个数组是否是另一个数组的子集
+先排序，再一一比照
+bool isSubset(int arr1[], int arr2[], int m, int n)
+{
+    int i = 0, j = 0;
+    if(m < n)
+       return 0;
+    quickSort(arr1, 0, m-1);
+    quickSort(arr2, 0, n-1);
+    while( i < n && j < m )
+    {
+        if( arr1[j] <arr2[i] )
+            j++;
+        else if( arr1[j] == arr2[i] )
+        {
+            j++;
+            i++;
+        }
+        else if( arr1[j] > arr2[i] )
+            return 0;
+    }
+    if( i < n )
+    return 0;
+    else return 1;
+}
+
+@link和import的区别？
+引用CSS的两种方式：
+<link rel="stylesheet" href="taojiaqu.css" type="text/css" />
+<style type="text/css">@import url(taojiaqu.css) </style>
+1.link是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS。
+2.link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。
+3.link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。
+4.link支持使用Javascript控制DOM去改变样式；而@import不支持。
+
+@浏览器的内核分别是什么？
+Trident(IE内核)，是微软开发的一种排版引擎。
+
+Gecko(Firefox内核)，是一套开放源代码的、以C++编写的网页排版引擎。
+
+Presto(Opera前内核) (已废弃)。
+
+Webkit(Safari内核,Chrome内核原型,开源)。
+
+@常见兼容性问题及解决方案？
+不同浏览器的标签默认的外边距和内边距不同
+*｛margin:0;padding:0｝
+

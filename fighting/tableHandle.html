@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1" cellpadding="10" id="sortTable">
+        <thead align="left">
+            <tr>
+                <th>姓名</th>
+                <th>力量</th>
+                <th>敏捷</th>
+                <th>智力</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+<script> 
+    var propertys = {
+        init : function() {
+            this.setting();
+            this.render();
+            this.bindEvent();
+        },
+        setting : function() {
+        //数据没有那么重要吧
+            this.data = [
+                {name : "德鲁伊", power : 17, speed : 24, intel : 13},
+                {name : "napoleon", power : 23, speed : 14, intel : 33},
+                {name : "覃小夫", power : 122, speed : 122, intel : 156},
+                {name : "敏感词", power : 10, speed : 10, intel : 120}
+            ];
+            this.isClick = {
+                power : null,
+                speed : null,
+                intel : null
+            };
+        },
+        render : function() {
+            var str = '';
+            for ( var i = 0; i < this.data.length; i++ ) {
+                str += '<tr>';
+                for ( var pro in this.data[i] ) {
+                    str += '<td>' + this.data[i][pro] + '</td>';
+                }
+                str += '</tr>';
+            }
+ 
+            this.dom.innerHTML = str;
+        },
+        bindEvent : function() {
+            this.clickEvent = this.handleClick.bind( this );
+                //让table元素来响应click事件
+            this.dom.parentNode.addEventListener( 'click', this.clickEvent, false );
+        },
+        handleClick : function(event) {
+            var tag = event.target.innerHTML.toLowerCase();
+            switch( tag ) {
+                case '力量':
+                    this.sort( 'power' );
+                    break;
+                case '敏捷':
+                    this.sort( 'speed' );
+                    break;
+                case '智力':
+                    this.sort( 'intel' );
+                    break;
+            }
+            this.render();
+        },
+        sort : function(property) {
+			console.log(this.isClick[property] );
+            this.data.sort( function(a,b) {
+                if ( this.isClick[property] )
+                    return a[property] > b[property];
+                else
+                    return a[property] < b[property];
+                 
+            }.bind(this) );
+            this.isClick[property] = !this.isClick[property];
+        },
+        destroy : function() {
+            this.data = null;
+            this.isClick = null;
+            this.dom.parentNode.removeEventListener( 'click', this.clickEvent );
+            this.dom = null;
+        }
+    };
+
+function SortTable( dom ) {
+        this.dom = dom;
+        this.init();
+}
+SortTable.prototype = Object.create( propertys);
+ 
+ 
+var tableSorting = new SortTable( document.querySelector( '#sortTable tbody'));
+</script>
+</html>
