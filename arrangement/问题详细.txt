@@ -1,0 +1,61 @@
+@js
+将对象格式化成标准的JSON格式   JSON.parse() 方法可以将一个 JSON 字符串解析成为一个 JavaScript值 遍历顺序是从内向外的，
+JS对象转换成为JSON JSON.stringify()
+
+requirejsJS 模块化工具
+requirejs：一般会把使用requirejs管理依赖关系的代码打包压缩，加版本号，同时根据项目情况决定要不要按照业务模块做拆分打包&异步按需加载
+
+ 未掌握的
+ @JavaScript 的模块化规范
+ 区别https://www.zhihu.com/question/20351507/answer/14859415
+ AMD规范 异步模块定义 amdjs   RequireJS 在推广过程中对模块定义的规范化产出。
+ CMD规范 通用模块定义 seajs   SeaJS 在推广过程中对模块定义的规范化产出
+ CommonJS Modules/2.0 规范   BravoJS 在推广过程中对模块定义的规范化产出。 node.js的模块系统 http://www.ruanyifeng.com/blog/2015/05/commonjs-in-browser.html
+
+
+// AMD 默认推荐的是
+define(['./a', './b'], function(a, b) { // 依赖必须一开始就写好
+a.doSomething()
+// 此处略去 100 行
+b.doSomething()
+...
+}) 
+ 
+// CMD
+define(function(require, exports, module) {
+var a = require('./a')
+a.doSomething()
+// 此处略去 100 行
+var b = require('./b') // 依赖可以就近书写
+b.doSomething()
+// ... 
+})
+
+ requirejsJS RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最好的实现者之一。
+
+
+ @Gulp和webpack
+ http://blog.csdn.net/xllily_11/article/details/51782005
+ Gulp是工具链、构建工具，可以配合各种插件做js压缩，css压缩，less编译 替代手工实现自动化工作
+ webpack是文件打包工具，可以把项目的各种js文、css文件等打包合并成一个或多个文件，主要用于模块化方案，预编译模块的方案
+
+-seajs / require : 是一种在线"编译" 模块的方案，相当于在页面上加载一个 CMD/AMD 解释器。这样浏览器就认识了 define、exports、module 这些东西。也就实现了模块化。
+
+-browserify / webpack : 是一个预编译模块的方案，相比于上面 ，这个方案更加智能。没用过browserify，这里以webpack为例。首先，它是预编译的，不需要在浏览器中加载解释器。另外，你在本地直接写JS，不管是 AMD / CMD / ES6 风格的模块化，它都能认识，并且编译成浏览器认识的JS。这样就知道，Gulp是一个工具，而webpack等等是模块化方案。Gulp也可以配置seajs、requirejs甚至webpack的插件。
+
+gulp  
+用gulp做一个略完整的前端打包工作 http://www.tuicool.com/articles/Uzq6Fr 
+打包：压缩 混淆 合并 加md5 加cdn
+
+加cdn地址css: /www/css/style.css   ==>   static.sj.com/www/css/style.css
+js: /www/script/jquery.js   ==>   static.sj.com/www/script/jquery.js
+CDN的全称是Content Delivery Network，即内容分发网络。其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度。
+负载均衡是整个CDN的核心，负载均衡的准确性和效率直接决定了整个CDN的效率和性能。负载均衡技术将网络的流量尽可能均匀地分配到几个能完成相同任务的服务器或网络节点上进行处理，避免部分网络节点过载而另一部分节点空闲的不利状况，既可以提高网络流量，又可以提高网络的整体性能。
+
+混淆这个功能主要针对Javascript代码，它的目的是减低代码的可读性，防止被追踪出程序逻辑。
+
+@压缩
+http://www.cnblogs.com/niaowo/p/4082612.html
+http://www.tuicool.com/articles/26ZzQv
+
+DNS（Domain Name System，域名系统），因特网上作为域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的访问互联网，而不用去记住能够被机器直接读取的IP数串。通过主机名，最终得到该主机名对应的IP地址的过程叫做域名解析（或主机名解析）。

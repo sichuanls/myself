@@ -40,6 +40,7 @@ body{font:14px/1.5 Tahoma;}
 #content li{
   list-style-type:none;
   padding: 5px 10px;
+  transition: all 5s; 
 }
 #content li:before{
   content:'☆';
@@ -50,6 +51,7 @@ body{font:14px/1.5 Tahoma;}
   background-color:#fff;
 }
 #content li.reference:before{
+  content:'★';
   color:#FF5722;
 }
 #content li:hover{
@@ -101,6 +103,7 @@ window.onload = function ()
         <li >应用</li>
         <li>综合</li>
         <li>其他</li>
+        <li>常用链接</li>
     </ul>
     <div id="content">
         <ul style="display:block;">
@@ -121,9 +124,10 @@ window.onload = function ()
             <li class="reference"><a href="show/application/clock.html" target="_blank">canvas 时钟</a></li>
             <li><a href="show/application/alert.html" target="_blank">可拖动弹框</a></li>
             <li><a href="show/application/pictureEnlarge/index.html" target="_blank">图片放大</a></li>
-            <li><a href="show/application/dragVerification.html" target="_blank">拖动滑块验证</a></li>
+            <li class="reference"><a href="show/application/dragVerification.html" target="_blank">拖动滑块验证</a></li>
             <li><a href="show/application/loadingPicTurn/index.html" target="_blank">带loading图片切换</a></li>
-            <li><a href="show/application/iPhone/index.html" target="_blank">仿iPhone界面</a></li>
+            <li class="reference"><a href="show/application/delayLoadPic/index.html" target="_blank">延时加载图片</a></li>
+            <li class="reference"><a href="show/application/iPhone/index.html" target="_blank">仿iPhone界面</a></li>
         </ul>
         <ul>
             <li><a href="show/comprehensive/angular.html" target="_blank">angular原理</a></li>
@@ -131,8 +135,13 @@ window.onload = function ()
             <li><a href="show/comprehensive/reset.html" target="_blank">性能优化</a></li>
             <li><a href="show/comprehensive/reset.html" target="_blank">Web安全</a></li>
         </ul>
-        <ul>
+        <ul><li><a href="resume/index.html" target="_blank">简历</a></li>
+            <li><a href="show/others/information.html" target="_blank">重要信息</a></li>
             <li><a href="show/others/simpleWebCrawler.html" target="_blank">node简单爬虫</a></li>
+            <li><a href="show/others/bookmarks.html" target="_blank">书签</a></li>
+        </ul>
+        <ul>
+            <li><a href="http://www.jq22.com/jquery-info1124" target="_blank">jQuery插件库</a></li>
         </ul>
     </div>
 </div>

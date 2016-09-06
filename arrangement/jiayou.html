@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>加油</title>
+</head>
+<body>
+<style type="text/css">
+*{margin: 0;padding: 0;}
+#main0 {
+	border:2px solid black;
+}
+#left0 {
+	float: left;
+	background-color: orange;
+	height:100px;
+	width: 220px;
+}
+#right0 {
+	margin-left: 220px;/*==等于左边栏宽度==*/
+	height:100px;
+	background-color: green;
+}
+#main1 {
+	border:2px solid black;
+}
+#left1 {
+	background-color: orange;
+	margin-right: 220px;/*==等于左边栏宽度==*/
+	height:100px;
+}
+#right1 {
+	float: right;
+	width: 220px;
+	height:100px;
+	background-color: green;
+}
+
+#main {
+	border:2px solid black;
+	overflow:hidden;
+}
+#main #left {
+	background-color: orange;
+	height:100px;
+	float:left;
+	width:100%;
+}
+#main #left #inside{
+	background-color: orange;
+	margin-right: 220px;/*==等于左边栏宽度==*/
+	height:100%;
+}
+#main #right {
+	float: left;
+	width: 220px;
+	height:100px;
+	background-color: green;
+	margin-left: -220px;
+}
+
+#main2 {
+	border:2px solid black;
+	overflow:hidden;
+}
+#main2 #left2 {
+	background-color: green;
+	height:100px;
+	float:left;
+	width:220px;
+	margin-left: -100%;
+}
+#main2 #right2 {
+	float: left;
+	height:100px;
+	background-color: orange;
+	width:100%;
+}
+#main2 #right2 #inside2{
+	margin-left: 220px;/*==等于左边栏宽度==*/
+	background-color: orange;
+	height:100%;
+}
+
+#main3 {
+	border:2px solid black;
+	position: relative;
+}
+#left3 {
+	background-color: orange;
+	position: absolute;
+	top:0;
+	left:0;
+	width: 220px;
+	height:100px;
+}
+#right3 {
+	height:100px;
+	background-color: green;
+	margin-left: 220px;
+}
+
+#main4 {
+	border:2px solid black;
+	position: relative;
+}
+#left4 {
+	background-color: orange;
+	margin-right: 220px;
+	height:100px;
+}
+#right4 {
+	height:100px;
+	width: 220px;
+	background-color: green;
+	position: absolute;
+	top:0;
+	right:0;	
+}
+#main5 {
+	border:2px solid black;
+}
+#left5 {
+	float:left;
+	background-color: orange;
+	width: 220px;
+	height:100px;
+}
+#content5 {
+	margin: 0 220px;
+	background-color: yellow;
+	height:100px;
+}
+#right5 {
+	height:100px;
+	width: 220px;
+	background-color: green;
+	float:right;
+}
+#main6 {
+	border:2px solid black;
+	overflow: hidden;
+}
+#left6 {
+	float:left;
+	background-color: orange;
+	width: 220px;
+	height:100px;
+	margin-left:-100%;
+}
+#content6 {
+	float:left;
+	width: 100%;
+	background-color: yellow;
+	height:100px;
+}
+#content6 #inside6{
+	background-color: pink;
+	margin:0 220px;
+	height:100%;
+}
+#right6 {
+	float:left;
+	height:100px;
+	width: 220px;
+	background-color: green;
+	margin-left:-220px;
+}
+#main7 {
+	border:2px solid black;
+	position: relative;
+}
+#left7 {
+	background-color: orange;
+	width: 220px;
+	height:100px;
+	position: absolute;
+	top:0;
+	left:0;
+}
+#content7 {
+	background-color: yellow;
+	margin:0 220px;
+	height:100px;
+}
+#right7 {
+	height:100px;
+	width: 220px;
+	background-color: green;
+	position: absolute;
+	top:0;
+	right:0;
+}
+</style>
+
+<!-- 两列布局 -->
+<!-- 左/右float+  主体marin-left/marin-right 注意顺序:先浮动→浮动的部分会盖住主体的margin部分-->
+<div id="main0">
+	<div id="left0">固定</div>
+	<div id="right0">自适应<div style="height:20px;width:20px;background-color:black"></div></div>
+</div>
+
+<div id="main1">
+	<div id="right1">固定</div>
+	<div id="left1">自适应<div style="height:20px;width:20px;background-color:black"></div></div>
+</div>
+
+<!-- 都float+  主体100%-内部div marin-left/marin-right   左float-100% /右-220px  注意顺序:先浮动-->
+<div id="main2">
+	<div id="right2"><div id="inside2">自适应<div style="height:20px;width:20px;background-color:black"></div></div></div><div id="left2">固定</div>
+</div>
+
+<div id="main">
+	<div id="left"><div id="inside">自适应<div style="height:20px;width:20px;background-color:black"></div></div></div>
+	<div id="right">固定</div>
+</div>
+
+<!-- 左/右position  主体margin-->
+<div id="main3">
+	<div id="left3">固定</div>
+	<div id="right3">自适应<div style="height:20px;width:20px;background-color:black"></div></div>
+</div>
+
+<div id="main4">
+	<div id="left4">固定</div>
+	<div id="right4">自适应<div style="height:20px;width:20px;background-color:black"></div></div>
+</div>
+
+<!-- 三列布局 -->
+<!-- 左右float+  主体marin-left marin-right 注意顺序：先浮动-->
+<div id="main5">
+	<div id="left5">Left sidebar</div>
+	<div id="right5">Right Content</div>
+	<div id="content5">Main Content<div style="height:20px;width:20px;background-color:black"></div></div>
+</div>
+
+<!-- 都float+  主体100%-内部inside marin-left marin-right   左float-100%  右-220px  注意顺序-->
+<!-- margin负值相当于向前拉，注意留出空位 -->
+<div id="main6">
+    <div id="content6"><div id="inside6">Main Content<div style="height:20px;width:20px;background-color:black"></div></div></div>
+    <div id="left6">Left sidebar</div>
+	<div id="right6">Right Content</div>
+</div>
+
+<!-- 左右position  主体margin-->
+<div id="main7">
+    <div id="left7">Left sidebar</div>
+    <div id="content7">Main Content<div style="height:20px;width:20px;background-color:black"></div></div>
+	<div id="right7">Right Content</div>
+</div>
+
+<br><br><br><br>
+<!-- 清除浮动 -->
+<!-- 浮动:撑不起父容器高度 -->
+<div style="padding:10px;background-color:green;">
+	<div style="padding:40px;background-color:blue;float:left"></div>
+	<div style="padding:40px;background-color:red;float:left"></div>
+</div>
+<br><br><br><br><br><br><br><br>
+<!-- 父容器也浮动，不推荐！！影响页面其他布局 -->
+<div style="padding:10px;background-color:green;float:left;">
+	<div style="padding:40px;background-color:blue;float:left"></div>
+	<div style="padding:40px;background-color:red;float:left"></div>
+</div>
+<br><br><br><br><br><br><br><br>
+<!-- overflow -->
+<div style="padding:10px;background-color:green;overflow:hidden;">
+	<div style="padding:40px;background-color:blue;float:left"></div>
+	<div style="padding:40px;background-color:red;float:left"></div>
+</div>
+<br><br><br><br>
+<!-- clear:both 多一个尾巴元素-->
+<div style="padding:10px;background-color:green;">
+	<div style="padding:40px;background-color:blue;float:left"></div>
+	<div style="padding:40px;background-color:red;float:left"></div>
+	<div style="clear:both;"></div>
+</div>
+<br><br>
+<style type="text/css">
+#clearParent:after{
+	content:'.';
+	height:0;
+	display: block;
+	clear:both;
+	visibility: hidden;
+}	
+</style>
+<div style="padding:10px;background-color:green;" id="clearParent">
+	<div style="padding:40px;background-color:blue;float:left"></div>
+	<div style="padding:40px;background-color:red;float:left"></div>
+	<div style="padding:40px;background-color:yellow;float:left"></div>
+</div>
+
+
+
+<br><br><br><br><br><br><br><br>
+<!-- bootstrap 原理 -->
+<!-- 重要的样式 container row col
+container宽度响应式调节，和col类似，具有左右15px的padding
+row具有左右-15px的margin，撑大了本应该只有container内容宽度的宽度，贴合在container的padding上
+col具有左右15px的padding，类似container，方便后期再嵌套row，进而嵌套下去
+col宽度采用百分制，均分成12份，100%/12=8.333333333% ~ 100%
+offset margin-left  0%-100% 间隔1/12
+pull right 距离右侧距离，正值即向左前进  0%-100% 间隔1/12
+push left  距离左侧距离，正值即向右前进  0%-100% 间隔1/12
+-->
+<!-- 响应式 使用media screen，针对不同屏幕的大小，container使用不同宽度，768 992 1200 xm/sm/md/lg, -->
+<style type="text/css">
+
+	.container {
+   padding-right: 15px;
+   padding-left: 15px;
+   margin-right: auto;
+   margin-left: auto;
+   height:100px;
+   background-color: orange;
+}
+
+@media (min-width:768px){.container{width:750px}}
+@media (min-width:992px){.container{width:970px}}
+@media (min-width:1200px){.container{width:1170px}}
+.row{margin-right:-15px;margin-left:-15px;background-color: green;}
+.col-xs-1,.col-sm-1,.col-md-1,.col-lg-1,.col-xs-2,.col-sm-2,.col-md-2,.col-lg-2,.col-xs-3,.col-sm-3,.col-md-3,.col-lg-3,.col-xs-4,.col-sm-4,.col-md-4,.col-lg-4,.col-xs-5,.col-sm-5,.col-md-5,.col-lg-5,.col-xs-6,.col-sm-6,.col-md-6,.col-lg-6,.col-xs-7,.col-sm-7,.col-md-7,.col-lg-7,.col-xs-8,.col-sm-8,.col-md-8,.col-lg-8,.col-xs-9,.col-sm-9,.col-md-9,.col-lg-9,.col-xs-10,.col-sm-10,.col-md-10,.col-lg-10,.col-xs-11,.col-sm-11,.col-md-11,.col-lg-11,.col-xs-12,.col-sm-12,.col-md-12,.col-lg-12{position:relative;min-height:1px;padding-right:15px;padding-left:15px;}
+.col-xs-1,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-10,.col-xs-11,.col-xs-12{float:left}.col-xs-12{width:100%}.col-xs-11{width:91.66666667%}.col-xs-10{width:83.33333333%}.col-xs-9{width:75%}.col-xs-8{width:66.66666667%}.col-xs-7{width:58.33333333%;background-color: white;}.col-xs-6{width:50%}.col-xs-5{width:41.66666667%}.col-xs-4{width:33.33333333%}
+.col-xs-3{width:25%}.col-xs-2{width:16.66666667%;background-color: pink;}.col-xs-1{width:8.33333333%;background-color: blue; }
+.col-xs-pull-12{right:100%}.col-xs-pull-11{right:91.66666667%}.col-xs-pull-10{right:83.33333333%}.col-xs-pull-9{right:75%}.col-xs-pull-8{right:66.66666667%}.col-xs-pull-7{right:58.33333333%}.col-xs-pull-6{right:50%}.col-xs-pull-5{right:41.66666667%}.col-xs-pull-4{right:33.33333333%}.col-xs-pull-3{right:25%}.col-xs-pull-2{right:16.66666667%}.col-xs-pull-1{right:8.33333333%}.col-xs-pull-0{right:auto}.col-xs-push-12{left:100%}.col-xs-push-11{left:91.66666667%}.col-xs-push-10{left:83.33333333%}.col-xs-push-9{left:75%}.col-xs-push-8{left:66.66666667%}.col-xs-push-7{left:58.33333333%}.col-xs-push-6{left:50%}.col-xs-push-5{left:41.66666667%}.col-xs-push-4{left:33.33333333%}.col-xs-push-3{left:25%}.col-xs-push-2{left:16.66666667%}.col-xs-push-1{left:8.33333333%}.col-xs-push-0{left:auto}.col-xs-offset-12{margin-left:100%}.col-xs-offset-11{margin-left:91.66666667%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-0{margin-left:0}
+
+.container,.row,.col-xs-1,.col-xs-7,.col-xs-4,.col-xs-8{box-sizing: border-box}
+</style>
+
+<div class="container">
+    <div class="row">
+      <div class="col-xs-1">dscdsav</div>
+      <div class="col-xs-1 col-xs-offset-1" style="background-color: green;">dscdsav</div>
+       <div class="col-xs-7" style="background-color: red;">dscdsav</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 col-xs-push-8" style="background-color: green;">dscdsav1</div>
+      <div class="col-xs-8 col-xs-pull-4" style="background-color: blue;">dscdsav</div>
+    </div>
+</div>
+
+
+<br><br><br><br><br><br>
+<table border="10"> 
+<tr> 
+　　<td colspan=2 align="center">员工号</td>
+</tr> 
+<tr> 
+<td rowspan=2 align="center">学历</td>
+<td align="center">专业</td>
+</tr>
+<tr>
+<td align="center">毕业学校</td>
+</tr> 
+</table>
+
+</body>
+</html>
