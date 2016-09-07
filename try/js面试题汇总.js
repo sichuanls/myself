@@ -171,7 +171,7 @@ function changeFile(event){
 var dragTarget=document.getElementById('dragTarget');
 var dragHandle=function(event){
 	EventUtil.preventDefault(event);
-	if(event.type=='drag'){
+	if(event.type=='drap'){
 		var files=event.dataTransfer.files;
 		//可上传文件
 	}

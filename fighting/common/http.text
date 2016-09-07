@@ -1,0 +1,37 @@
+一. 浏览器输入一个地址
+http://www.360doc.com/content/14/0917/10/10096004_410111504.shtml
+（1）DNS服务器查询，域名转换成IP
+		查找过程，先查缓存（浏览器缓存，系统缓存，路由器缓存，ISP DNS缓存，递归搜索）
+（2）发起请求-返回响应（反向代理Nginx，服务器处理请求）
+		 http协议是应用层（发送请求、发送响应、关闭连接）
+		 tcp/ip协议是物理传输层（三次握手：客户端发送包-服务器回复包-客户端发送确认包包，连接成功）  
+（3）解压解析，生成DOM树，渲染
+（4）script、style、img等需要获取其他地址内容，异步获取（一般并发数为6个）
+
+二、http协议
+http://www.cnblogs.com/li0803/archive/2008/11/03/1324746.html
+
+URL protocol+hostname+port+pathname+search+hash
+http://www.baidu.com/
+@请求  请求行+报头+正文
+method URI http-version
+
+@响应 状态行+报头+正文
+http-version staus-code description
+staus-code: 1XX 指示信息  2XX成功类 3XX重定向 4XX客户端错误 5XX服务器错误
+常用 200成功 304未改变 301永久移动 302临时移动 404未找到 400 Bad Request 401 Unauthoried请求未授权 403Forbidden 500服务器不可预测错误 503当前不能处理  100 Continue  继续
+
+
+三、层次
+物理层 线路、光纤、无线电
+数据链路层 以太网、令牌环、ISDN
+网络层  IP
+传输层 	TCP/UDP
+会话层 
+表示层 XDR
+应用层 HTTP/FTP/SMTP
+
+四、
+
+
+

@@ -1,0 +1,50 @@
+都在window这个全局对象下！！
+
+//注意var variable变量、没有var 声明的变量、window.variable
+没有var 声明的变量，会添加到window.中，可用delete删除
+有的，不能delete删除，返回false
+对于未定义的变量，js直接访问会报错，window.访问返回undefined
+
+//窗口和框架关系
+top始终指向浏览器窗口  parent指向父亲框架 window等同于self，是当前框架的特定实例  每个框架都有自己的构造函数，并不相等
+访问框架 window.frames[0]; frames[0]; window.frames[name]; frames[name];
+窗口相对于屏幕的距离  
+var leftPos=(typeof window.screenLeft =="number")?window.screenLeft:window.screenX;
+var topPos=(typeof window.screenTop =="number")?window.screenTop:window.escrenY;
+方法 window.moveTo(x,y) window.moveBy(x,y) 默认被浏览器禁止
+窗口大小 浏览器大小outerHeight 和 页面视图区大小innerHeight clientHeight(注意是否标准模式)
+var pageHieght=window.innerHight;
+var pageWidth=window.innerWidth;
+if(typeof pageHieght!="number"){
+	if(document.compatMode="CSS1Compat"){
+		pageHieght=document.documentElement.clientHeight;
+	} 
+	else{ //"BackCompat"
+		pageHieght=document.body.clientHeight;//chrome下获取innerHight=documentElement.clientHeight，不等于document.body.clientHeight，可能和菜单栏有关系...
+	}
+}
+
+window.open(url,frameName/"_self/_blank/_top/_parent")
+
+//location对象
+URL protocol+hostname+port+pathname+search+hash
+window.location //location 
+location.href
+location.protocol
+location.hostname
+location.port
+location.pathname
+location.search
+location.hash
+//设置 location.href=url;  location=url; 
+//location.assign(url);会生成历史记录   location.replace(url)不会生成  location.reload() location.reload(true;)
+
+//navigator对象
+//主要用于获取ua 即userAgent  和能力检测
+navigator.userAgent  .appName .platform .appVersion .plugins
+
+//screen对象
+//用于获取屏幕像素高宽  .height 。width
+
+//history对象  改变包括hash的变化！！
+ .go(n或者string)  .forward()  .back()  .length==0可确认当前页面是窗口打开后第一个页面

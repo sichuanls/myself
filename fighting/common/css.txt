@@ -1,0 +1,103 @@
+一、link和important的区别
+（1）link是标签，无兼容问题；@important是css提供的，早期浏览器可能不兼容
+（2）link与页面同时加载，一般放在head标签中 
+     而@import引用的CSS会等到页面被加载完再加载//会产生无样式内容闪烁-刚开始内容是没有样式的
+（3）link方式的样式权重高于@import的
+
+<link type="text/css" rel="stylesheet" href="url"/>
+@import url("url");
+<script type="text/javacript" src="url"></script>
+
+二、css3新特性
+box-shodow:h-shadow v-shadow blur spread color inset;
+border-radius:% px;
+border-image:url p p p p type;
+    原理:4刀切(slice 上左下右的裁剪位置)-九宫格 四角不变 水平和垂直可效果(round repeat stretch)
+    例：border-image: url(/i/border_image_button.png) 0 14 0 14 stretch;
+background-size:
+	length|percentage|cover|contain;  将背景图片缩小或放大 position的位置是在size的基础上的
+	cover把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。背景图像的某些部分也许无法显示在区域中。
+background-clip:背景绘制区域，border-box|padding-box|content-box;
+background-origin:规定背景图片的定位区域。border-box|padding-box|content-box;  默认padding-box
+
+text-shaow:h-shadow v-shadow blur color;
+@font-face{
+	font-family:name;
+	src:url('url1'),url('url2');//ttf eof
+	font-weight:bold;
+	font-style:italic;
+	font-stretch:normal;
+}
+rgba
+transform:translate(x,y) scale(x,y) roate(degree) screw(degree,degree) 相应的3d转换translate3d() 
+transition:property duration time-function  delay  默认ease cubic-bezier(0.25,0.1,0.25,1) linear cubic-bezier(0,0,1,1)
+animation:name duration time-function  delay count direction state mode;
+@keyframes name{from{} to{}}
+@keyframes name{0%{} 50%{} 100%{}}
+
+三、选择器
+元素
+#id
+类.class
+后代选择器 div div
+子选择器 div>div
+并列 div.div1
+属性选择器 input[attrName='a'] [attrName^='a'] [attrName$='a'] [attrName*='a']  [attrName|='a'] [attrName~='a']
+伪类 love-hate :link:visited:hover:active  :focus :checked :last-child :nth-last-child(n)  :nth-last-of-type(n) :not(selector)
+伪元素 :before :after :first-line :first-letter
+相邻 div + div
+全选 *{}
+
+可继承样式 font color text-indent
+不可继承样式  width margin border padding
+
+优先级：
+就近原则；最后载入；!important > 内联样式> id > class > tag  
+权重：分值体系 内联-1000 #id-100 .class、伪类、属性-10 tag、伪元素-1
+
+四、初始化 reset css
+  因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。
+  *最简单的初始化方法就是（不建议）：{padding: 0; margin: 0;}
+  参考淘宝
+
+五、css spirit/精灵图/雪碧图
+	CSS Sprites 其实就是把网页中一些背景图片整合到一张图片文件中，再利用 CSS 的"background-image"，"background-repeat"，"background-position" 的组合进行背景定位，background-position 可以用数字能精确的定位出背景图片的位置。这样可以减少很多图片请求的开销，因为请求耗时比较长；请求虽然可以并发，但是也有限制，一般浏览器都是6个。
+
+六、定位 position
+static默认
+relative 相对文档流中自己的元素
+absolute 相对有定位的最近父元素，脱离文档流，改变行内元素的呈现方式，display被置为block；
+fixed 相对浏览器窗口，脱离文档流，改变行内元素的呈现方式，display被置为block；
+
+七、浮动 float 脱离文档流
+引发问题：
+1. 父元素的高度无法被撑开，影响与父元素同级的元素
+2. 浮动元素+同级的非浮动元素，浮动元素会覆盖在其上
+3. 若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构
+解决办法：
+1.设置 overflow 为 hidden 或者 auto → 触发BFC，将浮动元素纳入高度的计算范畴
+2.:before或者:afer伪元素
+#parent:after{
+    content:".";
+    height:0;
+    visibility:hidden;
+    display:block; //必须块级
+    clear:both;
+}
+3. 外元素 <div style="clear:both;"></div>（缺点：不过这个办法会增加额外的标签使HTML结构看起来不够简洁。）
+4. 浮动外部元素(不推荐：影响其他布局)
+
+八、display:none和visibility:hidden的区别
+都将元素隐藏。前者不再分配空间，它各边的元素会合拢；后者仍然保留空间。
+
+九、position的absolute与fixed共同点与不同点
+A：共同点：
+1.改变行内元素的呈现方式，display被置为block；
+2.让元素脱离普通流，不占据空间；
+3.默认会覆盖到非定位元素上
+
+B不同点：
+absolute的”根元素“是可以设置的，而fixed的”根元素“固定为浏览器窗口。
+当你滚动网页，fixed元素与浏览器窗口之间的距离是不变的。  
+
+
