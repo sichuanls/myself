@@ -1,0 +1,82 @@
+一、documen.write()和node.innerHTMl区别
+前者重绘整个页面，innerHTML 可以重绘页面的一部分
+
+二、访问节点方法
+NodeList 和 HTML Selection  区别:对于集合都有.item(n)方法，后者还可以.named(name)
+.parentNode  .parentElement  //document.parentNode为null
+.childNodes  .children
+.firstChild  .firstElementChild 
+.lastChild   .lastElementChild
+.previousSibling  .previousElementSibling 
+.nextSibling  .nextElementSibling
+
+document.getElementById('');
+document.getElementByName('');
+document.getElementsByTagName('');
+document.getElementsByClassName('');
+
+document.querySelector(selector);
+document.querySelectorAll(selector);
+
+node1.contains(node2); 节点1是否包含节点2
+
+三、操作节点
+.createElement(tagName)
+.appendChild(node)
+.insertBefore(node)
+.removeChild(node)
+.replaceChild(node)
+.cloneNode(true/false)
+.createDocumentFragment()
+
+.nodeType //元素-1 
+.nodeName  
+.tagName
+.nodeValue
+
+.setAttribute(name,value);
+.getAttribute(name)  // .getAttributeNode(name).value .attributes[name].value
+.removeAttribute(name)
+.attributes 返回特性的对象，具有length 可[0]访问
+
+四、操作classList 兼容写法 hasclass
+.className 获取字符串
+.classList 获取到数组
+.classList.add(name)
+.classList.contains(name)
+.classList.remove(name)
+.classList.toggle(name)
+
+var hasClass,addClass,removeClass,toggleClass;
+if('classList' in document.documentElement){  //document.documentElement指向html元素
+	hasClass=function(ele, c){
+	    return ele.classList.contains(c);
+	};
+	...
+}
+else{
+   var transName=function(c){
+       return "(^|\\s+)"+c+"(\\s+|$)"
+   }//转换 
+   hasClass=function(ele, c){
+	    return transName(c).test(ele.className);
+   };
+   addClass=function(ele, c){
+   		if(!hasClass(ele, c)){
+   		  ele.className=ele.className+" "+c;
+   		}
+   };
+   removeClass=function(ele, c){
+   		 ele.className = ele.className.replace(transName(c)," ");
+   };
+   toggleClass=function(ele, c){
+       var fn=hasClass(ele, c)?removeClass:addClass;
+       fn(ele, c);
+   };	
+}
+
+五、元素遍历
+
+六、事件
+
+七、表单

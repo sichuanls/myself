@@ -9,11 +9,11 @@ CSS3
 边框-
 @box-shadow
 @border-radius
-@border-image: url slice type 原理;4刀切(slice 上左下右的裁剪位置)-九宫格 四角不变 水平和垂直可效果(round repeat stretch)
+@border-image: url slice type 原理:4刀切(slice 上左下右的裁剪位置)-九宫格 四角不变 水平和垂直可效果(round repeat stretch)
   例：border-image: url(/i/border_image_button.png) 0 14 0 14 stretch;
 
 背景-
-@background-size    length|percentage|cover|contain;  将背景图片缩小或放大 position的位置是在size的基础上的
+@background-size:x y;    length|percentage|cover|contain;  将背景图片缩小或放大 position的位置是在size的基础上的
 					cover把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。背景图像的某些部分也许无法显示在区域中。
 @background-clip    背景绘制区域，border-box|padding-box|content-box;
 @background-origin   规定背景图片的定位区域。border-box|padding-box|content-box;  默认padding-box
