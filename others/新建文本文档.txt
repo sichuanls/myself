@@ -1,0 +1,51 @@
+local:8686
+http://10.240.178.132:3332/live/pc_dev/index.html#/m/special
+
+10.240.178.85:8282/live/pc_dev/index.html#/m/special
+一些链接地址：
+关于我们 http://localhost:8282/live/pc_dev/index.html#/m/apps/helpcenter/about
+联系我们 http://localhost:8282/live/pc_dev/index.html#/m/apps/helpcenter/contact
+专题列表 http://localhost:8282/live/pc_dev/index.html#/m/special
+
+http://10.240.178.85:8282/live/wap_dev/index.html#/m/special
+
+background-color:#eeeeee;
+
+513322199204253020
+
+已投
+内推——
+阿里
+腾讯
+百度http://10.240.178.132:3332/live/pc_dev/index.html#/m/special
+
+今日头条
+京东
+唯品会
+蘑菇街
+去哪
+
+
+大众
+迅雷
+
+校园招聘——
+360
+
+查询关键字：
+named entity recognition in Chinese clinical text
+Structural SVM
+
+参考文献：
+A comprehensive study of named entity recognition in Chinese clinical text
+Structural SVM with Partial Ranking for Activity Segmentation and Classification
+Data-Driven Information Extraction from Chinese Electronic Medical Records
+Extracting important information from Chinese Operation Notes with natural language processing methods
+
+Structural SVM with Partial Ranking for Activity Segmentation and Classification
+
+Structural support vector machine
+
+
+
+中文电子病历命名实体识别研究   哈尔滨工业大学， 计算机科学与技术， 2015， 硕士

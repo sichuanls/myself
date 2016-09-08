@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>12种常用颜色</title>
+	<style type="text/css">
+	*{padding: 0;margin: 0;}
+	html,body{
+		height: 100%;
+		width:100%;
+	}
+	.Site {
+	  display: flex;
+	  min-height: 100vh;
+	  flex-direction: column;
+	}
+	header,footer {
+	  /*flex: 1;*/
+	  width: 100%;
+	  background: #666;
+	  text-align: center;
+	  color:#fff;
+	  padding: 15px 0;
+	  line-height:20px;
+	}
+	header{
+		position: fixed;
+	}
+	footer{
+	}
+	.Site-content {
+		/*display: flex;*/
+	  	flex: 1;
+	  	/*width:1200px;*/
+	  	padding: 70px 0 0;
+	}
+	.content{
+		margin:0 auto;
+		width:800px;
+		background: #fff;
+		display: flex;
+		flex-flow:row wrap;
+		/*align-content:space-around;*/
+		justify-content:flex-start;
+		/*align-items:center;*/
+		/*border:1px solid #019fde;*/
+
+	}
+	.block{
+		width:200px;
+		/*margin:30px 0;*/
+		flex: 0 1 auto;
+		text-align: center;
+		padding: 50px 0;
+		color:#fff;
+	}
+	.color_blue{
+		background-color: #019fde;
+	}
+	.color_darkblue{
+		background-color: #019fa0;
+	}.color_deepblue{
+		background-color: #007cdc;
+	}
+	.color_green{
+		background-color: #8cc540;
+	}
+	.color_deepgreen{
+		background-color: #009f5d;
+	}
+	.color_pink{
+		background-color: #ff5675;
+	}
+	.color_red{
+		background-color: #ff1244;
+	}
+	.color_orange{
+		background-color: #ff8345;
+	}
+	.color_yellow{
+		background-color: #f8bd0b;
+	}
+	.color_gray{
+		background-color: #d1d2d4;
+	}
+	.color_purple{
+		background-color: #cd7bdd;
+	}
+	.color_deeppurple{
+		background-color: #887ddd;
+	}
+</style>
+</head>
+<body class="Site">
+	<header>常用颜色集合</header>
+	<main class="Site-content">
+		<div class="content">
+			<div class="block color_blue">蓝色</div>
+			<div class="block color_darkblue">暗蓝</div>
+			<div class="block color_deepblue">深蓝</div>
+			<div class="block color_green">浅绿</div>
+			<div class="block color_deepgreen">深绿</div>
+			<div class="block color_pink">粉红</div>
+			<div class="block color_red">红色</div>
+			<div class="block color_orange">橙色</div>
+			<div class="block color_yellow">黄色</div>
+			<div class="block color_gray">灰色</div>
+			<div class="block color_purple">紫色</div>
+			<div class="block color_deeppurple">深紫色</div>
+		</div>
+	</main>
+	<footer>copyright @lishan</footer>
+</body>
+</html>
