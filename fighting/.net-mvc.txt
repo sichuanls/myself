@@ -1,0 +1,66 @@
+@MVC 框架模式
+M-Model 数据模型，一般和数据库表的结构类似（从数据库里获取到的数据赋给相应模型的实例，然后被返回到视图）； .cs文件
+V-View  视图，根据模型来展示用户界面； .chtml/html文件
+C-Controller  控制器，改变数据模型，返回给视图； .cs文件
+
+Model（模型）是应用程序中用于处理应用程序数据逻辑的部分。
+通常模型对象负责在数据库中存取数据。
+View（视图）是应用程序中处理数据显示的部分。
+通常视图是依据模型数据创建的。
+Controller（控制器）是应用程序中处理用户交互的部分。
+通常控制器负责从视图读取数据，控制用户输入，并向模型发送数据。
+
+Web 服务器通常会将进入的 URL 请求直接映射到服务器上的磁盘文件。例如：URL 请求 "http://www.w3cschool.cc/index.php" 将直接映射到服务器根目录上的文件 "index.php"。
+MVC 框架的映射方式有所不同。MVC 将 URL 映射到方法。这些方法在类中被称为"控制器"。
+控制器负责处理进入的请求，处理输入，保存数据，并把响应发送回客户端。
+
+
+基于默认的命名
+Views文件夹 - Home文件夹 - about.cshtml、index.chtml
+Controllers文件夹 - HomeController.cs
+
+Controllers/HomeController.cs
+namespace MvcDemo.Controllers
+{
+    private MovieDBContext db = new MovieDBContext();//SQL Server LocalDB-实例化电影数据库上下文实例
+	public class HomeController : Controller
+	{
+		public ActionResult Index()
+		{
+			//Movie movie = db.Movies.Find(id);
+			return View(db.Movies.ToList());
+		}
+
+		public ActionResult About()
+		{
+			return View();
+		}
+		public ActionResult Details(int id = 0)
+		{
+		     Movie movie = db.Movies.Find(id);
+		     if (movie == null)
+		     {
+		         return HttpNotFound();
+		     }
+		     return View(movie);
+		}
+	}
+}
+
+Models/MovieDB.cs
+namespace MvcDemo.Models
+{
+	public class MovieDB
+	{
+		public int ID { get; set; }
+		public string Title { get; set; }
+		public string Director { get; set; }
+		public DateTime Date { get; set; }
+
+	}
+	public class MovieDBContext : DbContext
+	{
+		public DbSet<MovieDB> Movies { get; set; } 
+	}
+}
+

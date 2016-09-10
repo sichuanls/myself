@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style>
+*{padding:0;margin:0;}
+div{
+	height:100px;
+	width:100px;
+	position:relative;
+	margin:100px;
+	padding:20px;
+	background-color: pink;
+	border:5px solid green;
+}
+#div1{
+	overflow:scroll;
+	height:100px;
+	width:100px;
+	position:relative;
+	top:50px;
+	left:50px;
+	padding:20px;
+	background-color: pink;
+	border:5px solid green;
+}
+#div2{
+	height:100px;
+	width:100px;
+	position:relative;
+	margin:100px;
+	padding:20px;
+	background-color: pink;
+	border:5px solid green;
+}
+</style>
+</head>
+<body>
+	<!-- <div id="div1">qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</div>
+	<div id="div2">qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</div> -->
+	<div>qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</div> 
+	<div>qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</div> 
+	<div>qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</div> 
+	<div>qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</div> 
+	<div>qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</div> 
+	<div>qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</div> 
+
+<script>
+// console.log('div1');
+// var div=document.getElementById('div1');
+// console.log(div.clientHeight, div.clientWidth); //content框+padding（部分被滚动条覆盖
+// console.log(div.offsetHeight, div.offsetWidth); //content+padding+border
+// console.log(div.scrollHeight, div.scrollWidth);//内容的实际高宽>=client
+// console.log(div.scrollTop, div.scrollLeft);//向上或向右滚动的距离
+// console.log(div.offsetTop, div.offsetLeft);//相对于文档的偏移
+
+// console.log('div2');
+// var div2=document.getElementById('div2');
+// console.log(div2.clientHeight, div2.clientWidth);
+// console.log(div2.offsetHeight, div2.offsetWidth);
+// console.log(div2.scrollHeight, div2.scrollWidth);
+// console.log(div2.scrollTop, div2.scrollLeft);
+// console.log(div2.offsetTop, div2.offsetLeft);
+
+function aa(){
+	console.log(this.d);
+}
+var d=0;
+function throttle(method, context){
+	clearTimeout(method.tId);
+	method.tId=setTimeout(function(){
+		aa.call(context);
+	},50);
+}
+window.onscroll=function(){
+	//chrome下 window.innerHeight等于document.documentElement.clientHeight，是可视区高度
+	//document.body.clientHeight是可视内容高度，去掉顶部和底部的margin
+	// document.body.scrollHeight包括了margin
+	//console.log(document.body.scrollTop, window.innerHeight, document.documentElement.clientHeight,document.body.clientHeight, document.body.scrollHeight);
+	if(document.body.scrollTop+document.documentElement.clientHeight>document.body.scrollHeight-100){
+		console.log('33333');
+		throttle(aa,{d:1});
+	}
+}
+
+</script>
+</body>
+</html>
