@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo01</title>
+	<script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+	<div id="div1"></div>
+<script type="text/babel">
+	var arr=['apple','bananna'];
+	var arr1=[<p>haha!</p>,<p>haha!</p>];
+	ReactDOM.render(
+		<div>
+		{  //遇到{}按HTML规则解析JSX语法解析，遇到<>按HTML规则解析
+			arr.map(function(item){
+				return <p>react {item}</p>
+			})
+		}
+		{
+			arr1
+		}
+
+		</div>,
+		document.getElementById('div1')
+	);
+	var names = ['Alice', 'Emily', 'Kate'];
+
+</script>
+</body>
+</html>

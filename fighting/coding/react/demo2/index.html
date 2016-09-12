@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo01</title>
+	<script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+	<div id="div1"></div>
+<script type="text/babel">
+	var Hello=React.createClass({  //组件类名字首字母必须大写！！//利用React.Children.map不会有三种值的烦恼
+		getInitialState:function(){  //状态-变化的，活用交互操作导致状态变化，从而出发重新渲染UI;属性-是设置之后不会再更改的
+			return {
+			        lvalue:'hello',opacity: 1.0
+					};
+		},
+		propTypes:{
+			name:React.PropTypes.string.isRequired, //限制属性的类型和必须性
+		},
+		getDefaultProps:function(){ //设置属性默认值
+			return {
+				diyStyle:{backgroundColor:'yellow', width:'100px'},
+				name:"ls",
+			};
+		},
+		click:function(e){
+			clearInterval(this.timer);
+			var myInput=this.refs.myInput;
+			myInput.focus();
+			myInput.style.backgroundColor='red';
+			myInput.style.opacity=1.0;
+			// var a=this.state;
+			// a.diyStyle={backgroundColor:'red',width:'100px',opacity:1.0};
+			// this.setState(a);
+			//console.log(this.state);
+		},
+		change:function(e){
+            var a=this.state;
+			a.lvalue=e.target.value;
+			this.setState(a);
+		},
+		componentDidMount:function(){
+			var myInput=this.refs.myInput;
+			this.timer = setInterval(function () {
+		      var opacity = this.state.opacity;
+		      opacity -= .05;
+		      if (opacity < 0.1) {
+		        opacity = 1.0;
+		      }
+		      this.setState({
+		        opacity: opacity
+		      });
+		      myInput.style.opacity=opacity;
+		    }.bind(this), 100);
+		},
+		render:function(){
+			var lstate=this.state, lporps=this.props;
+			return (
+				<div>
+				   <h1>hello {this.props.name}</h1>
+					{this.props.children}
+					{
+						React.Children.map(this.props.children, function(child){
+							return <li>{child}</li>; //需要外层包裹！！！//样式需要时对象形式{color:'red',width:'100px'}
+						})
+				    }
+				    <input type="text" ref="myInput" onClick={this.click} style={lporps.diyStyle} value={lstate.lvalue} onChange={this.change}/>
+			   </div>
+			); //获取组件的后代 返回值-undefined没有子节点、object一个子节点、array多个子节点//只能返回一个顶层！！，this.props获取属性[特殊className htmlFor]
+		}
+	});
+	ReactDOM.render(
+		<Hello name="lishan">
+			<div><p>你很棒！</p></div>
+			<p>加油！</p>
+		</Hello>,
+		document.getElementById('div1')
+	);
+
+</script>
+</body>
+</html>
