@@ -1,0 +1,80 @@
+(function( window, undefined ) {
+     /* 源码内容 */
+	 var jQuery = (function() { 
+	// 构建jQuery对象 
+	var jQuery = function( selector, context ) { 
+	return new jQuery.fn.init( selector, context, rootjQuery ); 
+	} 
+
+	// jQuery对象原型 
+	jQuery.fn = jQuery.prototype = { 
+	constructor: jQuery, 
+	init: function( selector, context, rootjQuery ) { 
+	// something to do 
+	} 
+	}; 
+
+	jQuery.fn.init.prototype = jQuery.fn; 
+
+	window.jQuery = window.$ = jQuery;
+})( window );
+
+将jQuery.fn 赋值给jQuery.fn.init.prototype.这样的话， jQuery.fn.init.prototype的原型也就是jQuery的原型对象就是 jQuery.fn,赋值了以后。在调用的时候，当init中没有方法的时候，就会去原型函数中调用。 Query.extends()是直接扩展jQuery.而jQuery.fn.extends()，很明显是扩展的原型。 
+
+
+window是默认的JS上下文环境
+直接写$('text')的时候等于是window.$('text')
+
+特点：
+（1）改善js的操作方式，更方便
+-选择器 $('#myForm :input') $('div').not('.myClass'); $('div').siblings(); 
+-链式   $('div').find('h3').eq(2).html('Hello');
+-一些操作dom或js方法的封装  事件、动画等
+	.append()  .click() .fadeIn() .hide()
+	$('div').animate(    
+	 {    
+	 left : "+=50"，//不断右移    
+	 opacity : 0.25 //指定透明度    
+	 },  
+	 300,// 持续时间    
+	 function(){ alert('done!'); }//回调函数    
+	 );
+（2）可扩展-jquery插件  http://www.poluoluo.com/jzxy/201406/277886.html
+一、操作原型  jQuery.prototype.fn=fucntion(){//someThing return this;}
+	(function ($) {
+	    $.fn.m​​axHeight = function () {
+	        var max = 0;
+	        this.each(function () {  //this已经是一个jQuery对象
+	            max = Math.max(max, $(this).height());  //this关键字代表一个DOM元素
+	        });
+	        return max;
+	    };
+
+	})(jQuery);
+    var tallest = $('div').maxHeight(); //返回高度最大的div元素的高度
+
+    维护Chainability，必须确保你的插件返回this关键字；
+二、jQuery.extend(object);  http://www.jb51.net/article/45801.htm
+	$.fn.extend({ 
+	check:function(){ 
+	return this.each({ 
+	this.checked=true; 
+	}); 
+	}, 
+	uncheck:function(){ 
+	return this.each({ 
+	this.checked=false; 
+	}); 
+	} 
+	}); 
+	$('input[type=checkbox]').check(); 
+
+$(function(){})  // $(document).ready(function(){})
+实现原理就是，维护一个函数数组，然后不停的判断DOM是否加载完毕，倘若加载完毕就触发所有数组中的函数。
+
+$(selector).each(function(index){…});进行遍历操作呢?
+答:其实jQuery(selector)方法调用时,在jQuery(selector)方法内部,最后返回的是一个数组:return this.setArray(a);而each方法体内部是一个for循环,在循环体内是这样调用的:method.call(this[i],i)
+
+jQuery.extend() 函数用于将一个或多个对象的内容合并到目标对象。
+注意：1. 如果只为$.extend()指定了一个参数，则意味着参数target被省略。此时，target就是jQuery对象本身。通过这种方式，我们可以为全局对象jQuery添加新的函数。
+2. 如果多个对象具有相同的属性，则后者会覆盖前者的属性值。
