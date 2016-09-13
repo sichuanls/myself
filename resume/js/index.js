@@ -33,6 +33,7 @@ $(function(){
 			}
 			if(index==2){
 				$("aside a").eq(1).addClass("selected").siblings().removeClass("selected");
+				$("#exp_content h1").html('实践');
 				$("#exp_content h1").after("<div class='title_en'><h2>· Experience ·</h2></div>");
 				$(".title_en").animate({width:"130px"},800,function(){
 					$(".title_en h2").slideDown(400);

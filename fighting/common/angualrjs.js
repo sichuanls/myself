@@ -71,4 +71,5 @@
 /**
  * 自定义指令 AngularJS应用程序引导过程中找到匹配的元素，使用compile() 和link() 方法处理元素。
  * http://www.bubuko.com/infodetail-694161.html
+ * http://www.jb51.net/article/58229.htm
  */
