@@ -713,7 +713,7 @@ img#home_photo2 {
 	background-size: cover;
 }
 .exp_list_left {
-	width:533px;
+	width:620px;
 }
 .exp_list dl {
 	margin-left: 140px;
@@ -790,7 +790,7 @@ img#home_photo2 {
 .md-close {
 	border: none;
 	padding: 0.6em 1.2em;
-	background: #a4e2c6;
+	background: #43c288;
 	color: #fff;
 	font-family: 'Lato', Calibri, Arial, sans-serif;
 	font-size: 1em;
@@ -805,7 +805,7 @@ img#home_photo2 {
 	background: #78A6B0;
 }
 .modal-learn {
-	color: #75A2AE;
+	color: #000;
 }
 .modal-learn p {
 	text-align: center;
