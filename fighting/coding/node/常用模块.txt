@@ -1,0 +1,43 @@
+express serve服务器框架
+favicon 设置网站的图标，参数为图标的路径。不指明，则用默认的express图标。
+body-parser	格式化GRT/POST的参数，原包含在express中，express4.0后独立出来
+	四个处理方法分别对body的内容采用不同的处理方法；分别是处理json数据、Buffer流数据、文本数据、UTF-8的编码的数据。
+	bodyParser.json(options)、bodyParser.raw(options)、bodyParser.text(options)、bodyParser.urlencoded(options)
+
+cookie-parser	处理cookie
+
+express-session 是基于express框专门用于处理session的中间件。
+
+morgan:打印的nodejs 服务器接受到的请求的信息。
+debug：打印的是开发者自己在 控制台 打印的信息，它目的是要代替console.log() 
+	 特定：1.可以设置 打印的信息来自哪个哪个模块。2在发布到外网的情况下，可以用发布模式，这时 debug里打印信息将不会在显示。
+moment 日期输出管理
+单元测试 Mocha,Karma,Jasmine。
+async 用于管理异步处理流程，否则层层嵌套回调烦死你
+Web Socket - Socket.IO
+mongodb	连接mongodb
+mongoose	用来管理mongodb
+MD5	用来进行MD5加密
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views')); //模板路径
+app.set('view engine', 'jade');//模板引擎
+
+
+app.use 加载用于处理http請求的middleware（中间件），当一个请求来的时候，会依次被这些 middlewares处理。执行的顺序是你定义的顺序.
+
+
+next()
+这是一个函数！调用它，你可以执行相同路径的下一个方法：
+route.get("/a",function(req,res,next){
+console.log("a");
+next();
+})
+route.get("/a",function(req,res){
+console.log("b");
+res.send("a");
+})
+
+
+jade
+Jade 支持通过 block 和 extends 关键字来实现模板继承。 
