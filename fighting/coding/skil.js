@@ -94,6 +94,12 @@ for(var i = 0, a; a = arr[i++];) {
 
 //统计字符串中相同字符出现的次数。
 var arr = 'abcdaabc';
+var obj={};
+arr.forEach(function(item){
+	if(item in obj) obj[item]++;
+	else obj[item]=1;
+});
+
 
 var info = arr
     .split('')
